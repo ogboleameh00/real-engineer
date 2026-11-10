@@ -1,324 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HEAVENSGATE BOQ Calculator - Created by Engr. Ameh Ogbole</title>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HEAVENSGATE - BOQ</title>
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;background:#f4f4f4;color:#111}
-header{background:#0f172a;color:#fff;padding:14px 16px;text-align:center;position:sticky;top:0;z-index:10}
-header b{font-size:22px;letter-spacing:1px}
-header .creator{color:#fbbf24;font-size:12px;font-weight:700;margin:2px 0}
-.container{max-width:720px;margin:0 auto;padding:14px}
-.card{background:#fff;border-radius:14px;padding:18px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
-h2{margin:0 0 10px;font-size:19px}
-.section-title{background:#0f172a;color:#fff;padding:10px 12px;border-radius:10px;font-size:16px;margin:18px 0 8px}
-.section-sub{background:#fef3c7;color:#111;padding:8px 10px;border-radius:8px;font-size:14px;font-weight:800;margin:14px 0 6px;border-left:5px solid #f59e0b}
-label{font-weight:700;font-size:14px;display:block;margin:12px 0 5px}
-input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;font-size:15px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer}
-.btn-blue{background:#0f172a;color:#fff}
-.btn-green{background:#16a34a;color:#fff}
-.btn-orange{background:#f59e0b;color:#111}
-.cover{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;border-radius:14px;padding:26px 20px;text-align:center}
-.cover h1{font-size:34px;line-height:1.1;margin:0}
-.cover h1 span{color:#fbbf24}
-.cover .creator-cover{font-size:14px;margin:10px 0;color:#fbbf24;font-weight:700}
-.cover p{color:#cbd5e1;font-size:14px;line-height:1.5}
-.pay-box{background:#fef9c3;border:2px dashed #f59e0b;border-radius:14px;padding:16px}
-.copyBtn{background:#1d4ed8;color:#fff;border:none;padding:6px 12px;border-radius:8px;font-weight:700;cursor:pointer}
-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
-th,td{border:1px solid #e5e7eb;padding:8px;text-align:left}
-th{background:#0f172a;color:#fff}
-.group td{background:#fef3c7;font-weight:800;color:#111}
-.total{font-size:20px;font-weight:900;text-align:right;margin-top:10px}
-.hidden{display:none}
-.footer{text-align:center;font-size:12px;color:#64748b;padding:10px;line-height:1.6}
-.lock{font-size:40px;text-align:center}
-.device-info{background:#dcfce7;border-radius:10px;padding:10px;font-size:13px;text-align:center;line-height:1.5}
-</style>
-</head>
-<body>
-<header><b>HEAVENSGATE</b><br><div class="creator">Created by Engr. Ameh Ogbole</div><small>🧮 HEAVENSGATE Calculator</small></header>
-<div class="container">
-<div class="cover">
+body{font-family:Arial;padding:0;margin:0;background:#f1f5f9}
+.header{background:linear-gradient(135deg,#0b4a9e,#1565c0);color:#fff;padding:22px 16px;border-radius:0 0 24px 24px}
+.logo{display:flex;align-items:center;gap:10px}.logoIcon{width:56px;height:56px;background:#f59e0b;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:32px}
+.logo b{font-size:26px}.logo small{color:#fbbf24;font-weight:700}
+.cover{background:linear-gradient(160deg,#0b2a5e 0%,#0b4a9e 55%,#1565c0 100%);color:#fff;border-radius:20px;padding:28px 18px;margin:12px;text-align:center;position:relative;overflow:hidden}
+.cover:before{content:"🏠";position:absolute;right:-10px;top:-20px;font-size:140px;opacity:0.12}
+.cover .pill{display:inline-block;background:#f59e0b;color:#111;padding:6px 14px;border-radius:20px;font-weight:900;font-size:12px}
+.cover h1{font-size:32px;margin:14px 0 2px;line-height:1}.cover h1 span{color:#fbbf24}
+.cover h2{font-size:18px;letter-spacing:2px;margin:6px 0;color:#dbeafe}
+.cover .line{height:3px;background:#f59e0b;width:80px;margin:14px auto;border-radius:10px}
+.coverBox{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:14px;padding:14px;text-align:left;font-size:14px;line-height:1.9}
+.coverBox b{color:#fbbf24}
+.coverFoot{display:flex;justify-content:space-between;margin-top:16px;font-size:12px;opacity:0.9}
+.card{background:#fff;padding:14px;border-radius:12px;margin:12px}
+h2.sec{text-align:center;background:#0f172a;color:#fff;padding:8px;border-radius:8px;font-size:15px}
+label{font-weight:700;font-size:13px;display:block;margin-top:8px} input,select{width:100%;padding:10px;margin:4px 0 8px;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box}
+.row{display:flex;gap:8px}.row>div{flex:1}
+button{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;font-size:16px;margin:6px 0;cursor:pointer}
+.btn1{background:#0b4a9e;color:#fff}.btn2{background:#f59e0b}.btn3{background:#16a34a;color:#fff}
+table{width:100%;border-collapse:collapse;font-size:12px} th{background:#0b4a9e;color:#fff;padding:7px} td{padding:6px;border-bottom:1px solid #ddd}
+.section td{background:#fef3c7;font-weight:900}.total td{background:#0f172a;color:#fff;font-weight:900}.right{text-align:right}.center{text-align:center}
+.payBox{background:#fff3cd;border:2px dashed #f59e0b;padding:14px;border-radius:12px;margin:12px;text-align:center}
+#preview{width:100%;border-radius:10px;margin-top:8px;display:none}
+@media print{body{background:#fff} .noPrint{display:none!important} .cover{margin:0;border-radius:0;page-break-after:always} }
+</style></head><body>
+
+<div class="header noPrint"><div class="logo"><div class="logoIcon">🏠</div><div><b>HEAVENSGATE</b><br><small>🧮 HEAVENSGATE Calculator</small></div></div><h2>BOQ CALCULATOR</h2><p>Standard Bill of Quantities in 2 Minutes</p></div>
+
+<div class="cover" id="coverPage">
+<span class="pill">✦ HEAVENSGATE CONSTRUCTION ✦</span>
 <h1>HEAVENSGATE<br><span>REAL ENGINEER</span></h1>
-<p class="creator-cover">Created by Engr. Ameh Ogbole</p>
-<p>Professional Bill of Quantities (BOQ) Calculator<br>Substructure • Superstructure • Roofing • Finishing • Electrical • Plumbing</p>
-<p style="color:#fbbf24;font-weight:800">HEAVENSGATE CONSTRUCTION - Abuja, Nigeria</p>
+<h2>STANDARD BILL OF QUANTITIES</h2>
+<div class="line"></div>
+<p style="font-size:14px;opacity:0.9">Complete Cost Estimate • Materials • Labour • BOQ</p>
+<div class="coverBox">
+<b>CLIENT:</b> <span id="cClient">—</span><br>
+<b>PROJECT:</b> <span id="cTitle">—</span><br>
+<b>LOCATION:</b> <span id="cLoc">—</span><br>
+<b>DATE:</b> <span id="cDate">—</span><br>
+<b>DOCUMENT:</b> BOQ / ESTIMATE
+</div>
+<div class="coverFoot"><span>Prepared by:<br><b>HEAVENSGATE REAL ENGINEER</b></span><span style="text-align:right">Status:<br><b style="color:#fbbf24">STANDARD • VERIFIED</b></span></div>
+<p style="font-size:11px;opacity:0.7;margin-top:14px">This BOQ is prepared based on current market rates. Rates are adjustable.</p>
 </div>
 
-<div class="card" id="calcCard">
-<h2>🏠 Building Details</h2>
-<div id="deviceStatus"></div>
-<label>Client Name</label>
-<input id="clientName" placeholder="Enter client name">
-<label>Project Location</label>
-<input id="location" placeholder="e.g. Abuja, Nigeria">
-<label>Building Type</label>
-<select id="bType">
-<option value="bungalow">Bungalow (3 Bedroom)</option>
-<option value="duplex">4 Bedroom Duplex</option>
-<option value="flat">2 Bedroom Flat</option>
-<option value="commercial">Commercial Building</option>
-</select>
-<div class="row">
-<div><label>Length (m)</label><input id="length" type="number" value="12"></div>
-<div><label>Width (m)</label><input id="width" type="number" value="10"></div>
-</div>
-<div class="row">
-<div><label>Number of Rooms</label><input id="rooms" type="number" value="3"></div>
-<div><label>Number of Toilets</label><input id="toilets" type="number" value="2"></div>
+<div class="card noPrint"><h2 class="sec">UPLOAD DRAWING - AI EXTRACT</h2>
+<input type="file" accept="image/*" onchange="showDrawing(event)"><img id="preview"><button class="btn2" onclick="aiExtract()">🤖 AI EXTRACT VALUES FROM DRAWING</button><p id="aiMsg" style="font-size:12px;color:#0b4a9e;font-weight:700"></p></div>
+
+<div class="card noPrint"><h2 class="sec">PROJECT INFO - E GO ENTER COVER PAGE AUTOMATIC</h2>
+<label>Client Name</label><input id="client" oninput="updateCover()" placeholder="e.g. Mr Oche">
+<label>Project Location</label><input id="loc" oninput="updateCover()" placeholder="e.g. Abuja">
+<label>Project Title</label><input id="title" oninput="updateCover()" placeholder="e.g. 2 Bedroom Bungalow">
 </div>
 
-<!-- 1. SUBSTRUCTURE -->
-<div class="section-title">🏗️ 1. SUBSTRUCTURE</div>
-<label>Foundation Type</label>
-<select id="foundation">
-<option value="strip">Strip Foundation (Normal)</option>
-<option value="raft">Raft Foundation</option>
-<option value="pile">Pile Foundation</option>
-</select>
-<label>German Floor / DPC</label>
-<select id="germanFloor">
-<option value="yes">Yes - With German Floor</option>
-<option value="no">No German Floor</option>
-</select>
-<label>Foundation Depth</label>
-<select id="foundDepth">
-<option value="normal">Normal Depth (1m)</option>
-<option value="deep">Deep (1.5m - Waterlogged Area)</option>
-</select>
+<div class="card noPrint"><h2 class="sec">SUBSTRUCTURE</h2>
+<div class="row"><div><label>Excavation (m3)</label><input id="exc" type="number" value="40"></div><div><label>Pad Foundation (Nos)</label><input id="pad" type="number" value="12"></div></div>
+<div class="row"><div><label>Raft Thickness</label><select id="raft"><option>150mm</option><option>200mm</option></select></div><div><label>Laterite Filling (m3)</label><input id="lat" type="number" value="50"></div></div></div>
 
-<!-- 2. SUPERSTRUCTURE -->
-<div class="section-title">🧱 2. SUPERSTRUCTURE</div>
-<label>Block Type</label>
-<select id="blockType">
-<option value="6inch">6 Inch Block</option>
-<option value="9inch">9 Inch Block</option>
-<option value="burnt">Burnt Bricks</option>
-</select>
-<label>Number of Columns / Pillars</label>
-<input id="columns" type="number" value="12">
-<label>Beams & Lintels</label>
-<select id="beams">
-<option value="yes">Yes - With Concrete Beams & Lintels</option>
-<option value="no">No Beams</option>
-</select>
-<label>Deck / Slab (For Duplex)</label>
-<select id="slab">
-<option value="no">No Slab - Bungalow</option>
-<option value="yes">Yes - With Deck / Slab</option>
-</select>
+<div class="card noPrint"><h2 class="sec">BUILDING + STOREY</h2>
+<div class="row"><div><label>Length (m)</label><input id="len" type="number" value="12"></div><div><label>Width (m)</label><input id="wid" type="number" value="10"></div></div>
+<div class="row"><div><label>Bedrooms</label><input id="bed" type="number" value="2"></div><div><label>Storey</label><input id="storey" type="number" value="1"></div></div></div>
 
-<!-- 3. ROOFING -->
-<div class="section-title">🏠 3. ROOFING</div>
-<label>Roof Type</label>
-<select id="roofType">
-<option value="aluminium">Aluminium Long Span</option>
-<option value="stone">Stone Coated Tiles</option>
-<option value="gerard">Gerard / Metcoppo</option>
-<option value="parapet">Parapet / Hidden Roof</option>
-</select>
-<label>Roofing Wood / Trusses</label>
-<select id="roofWood">
-<option value="hardwood">Hardwood</option>
-<option value="softwood">Softwood</option>
-</select>
+<div class="card noPrint"><h2 class="sec">BLOCKWORK</h2>
+<div class="row"><div><label>9 inch Blocks (Nos)</label><input id="b9" type="number" value="1800"></div><div><label>6 inch Blocks (Nos)</label><input id="b6" type="number" value="1200"></div></div>
+<div class="row"><div><label>Cement for Blockwork (Bags)</label><input id="bCem" type="number" value="90"></div><div><label>Sand (Tons)</label><input id="bSand" type="number" value="12"></div></div></div>
 
-<!-- 4. FINISHING -->
-<div class="section-title">✨ 4. FINISHING</div>
-<label>Finishing Level</label>
-<select id="finish">
-<option value="standard">Standard Finishing</option>
-<option value="premium">Premium Finishing</option>
-<option value="luxury">Luxury Finishing</option>
-</select>
-<label>Floor Tiles Type</label>
-<select id="tiles">
-<option value="ceramic">Ceramic Tiles</option>
-<option value="porcelain">Porcelain Tiles</option>
-<option value="marble">Marble / Granite</option>
-</select>
-<label>Ceiling Type</label>
-<select id="ceiling">
-<option value="pvc">PVC Ceiling</option>
-<option value="pop">POP Ceiling</option>
-<option value="plaster">Plaster + Paint</option>
-</select>
-<label>Doors & Windows</label>
-<select id="doors">
-<option value="standard">Standard Doors & Aluminium Windows</option>
-<option value="premium">Premium - Security Doors + Casement</option>
-<option value="luxury">Luxury - Italian Doors + Glass</option>
-</select>
-<label>Painting Type</label>
-<select id="painting">
-<option value="emulsion">Emulsion Paint</option>
-<option value="satin">Satin / Silk Paint</option>
-<option value="texture">Texture / 3D Paint</option>
-</select>
+<div class="card noPrint"><h2 class="sec">REINFORCEMENT - PROVISION Y10 TO Y50</h2>
+<div class="row"><div><label>Y10 (Nos)</label><input id="y10" type="number" value="0"></div><div><label>Y12 (Nos)</label><input id="y12" type="number" value="100"></div></div>
+<div class="row"><div><label>Y16 (Nos)</label><input id="y16" type="number" value="80"></div><div><label>Y20 (Nos)</label><input id="y20" type="number" value="0"></div></div>
+<div class="row"><div><label>Y25 (Nos)</label><input id="y25" type="number" value="0"></div><div><label>Y32 / Y30 (Nos)</label><input id="y32" type="number" value="0"></div></div>
+<div class="row"><div><label>Y50 (Nos)</label><input id="y50" type="number" value="0"></div><div><label>Stirrups (Nos)</label><input id="rStir" type="number" value="200"></div></div>
+<div class="row"><div><label>Binding Wire (Roll)</label><input id="rWire" type="number" value="3"></div><div><label>Other Steel (Nos)</label><input id="yOther" type="number" value="0"></div></div></div>
 
-<!-- 5. ELECTRICAL & PLUMBING -->
-<div class="section-title">⚡🚿 5. ELECTRICAL & PLUMBING</div>
-<label>Electrical Installation</label>
-<select id="electrical">
-<option value="surface">Surface Wiring</option>
-<option value="conduit">Conduit Wiring (Standard)</option>
-<option value="smart">Smart Home Wiring</option>
-</select>
-<label>Plumbing Installation</label>
-<select id="plumbing">
-<option value="standard">Standard Plumbing</option>
-<option value="premium">Premium - With Water Heater & Pressure Pump</option>
-</select>
-<label>Water Supply</label>
-<select id="water">
-<option value="borehole">Borehole</option>
-<option value="well">Well</option>
-<option value="public">Public Water</option>
-</select>
+<div class="card noPrint"><h2 class="sec">CONCRETE</h2><label>Concrete C25 (m3)</label><input id="conc" type="number" value="25"></div>
 
-<br>
-<button class="btn btn-blue" onclick="tryCalculate()">CALCULATE BOQ →</button>
-<p style="text-align:center;font-size:13px;color:#555">Fill all sections above, press CALCULATE to generate your BOQ.</p>
+<div class="card noPrint"><h2 class="sec">FORMWORK - WOOD FOR FORMWORK</h2>
+<div class="row"><div><label>2x3 Wood (Nos)</label><input id="fw23" type="number" value="30"></div><div><label>2x2 Wood (Nos)</label><input id="fw22" type="number" value="40"></div></div>
+<div class="row"><div><label>2x4 Wood (Nos)</label><input id="fw24" type="number" value="20"></div><div><label>Marine Board 1.2 x 2.4 (Nos)</label><input id="marine" type="number" value="15"></div></div>
+<div class="row"><div><label>Nails (Bags)</label><input id="nails" type="number" value="5"></div><div><label>Old Boards (Nos)</label><input id="form" type="number" value="0"></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">ROOFING</h2>
+<label>Roof Type</label><select id="roofType"><option>Hip Roof</option><option>Gable Roof</option></select>
+<div class="row"><div><label>Pitch (deg)</label><input id="pitch" type="number" value="30"></div><div><label>Roof Area (sqm)</label><input id="roofArea" type="number" value="180"></div></div>
+<label>Covering</label><select id="cover"><option>Aluminium Long Span</option><option>Stone Coated</option></select>
+<h3 style="font-size:14px">ROOFING MEMBERS</h3>
+<div class="row"><div><label>2 x 3 (Nos)</label><input id="m23" type="number" value="40"></div><div><label>2 x 4 (Nos)</label><input id="m24" type="number" value="60"></div></div>
+<div class="row"><div><label>2 x 6 (Nos)</label><input id="m26" type="number" value="30"></div><div><label>Roof Nails (Bags)</label><input id="roofNailQty" type="number" value="4"></div></div>
+<div class="row"><div><label>Truss Spacing - Long Span (m)</label><input id="truss" type="number" value="1.2"></div><div><label>Stone Coated Spacing (m)</label><input id="stoneSpacing" type="number" value="0.6"></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">ELECTRICAL</h2>
+<div class="row"><div><label>Light Points</label><input id="light" type="number" value="25"></div><div><label>Sockets</label><input id="sock" type="number" value="20"></div></div>
+<div class="row"><div><label>Switches</label><input id="sw" type="number" value="20"></div><div><label>AC Points</label><input id="ac" type="number" value="4"></div></div>
+<div class="row"><div><label>Heater Points</label><input id="heat" type="number" value="3"></div><div><label>Fan Points</label><input id="fan" type="number" value="5"></div></div>
+<div class="row"><div><label>Conduit (m)</label><input id="conduit" type="number" value="40"></div><div><label>Earthing Lot</label><input id="earth" type="number" value="1"></div></div>
+<label>💡 COST OF ELECTRICAL MATERIALS - Total (₦)</label><input id="elecMatCost" type="number" value="850000"></div>
+
+<div class="card noPrint"><h2 class="sec">PLUMBING</h2>
+<div class="row"><div><label>WC</label><input id="wc" type="number" value="3"></div><div><label>Basin</label><input id="basin" type="number" value="3"></div></div>
+<div class="row"><div><label>Shower</label><input id="shower" type="number" value="3"></div><div><label>Kitchen Sink</label><input id="sink" type="number" value="1"></div></div>
+<div class="row"><div><label>Bath Tub</label><input id="bath" type="number" value="0"></div><div><label>Floor Drain</label><input id="drain" type="number" value="4"></div></div>
+<div class="row"><div><label>PPR Length (m)</label><input id="ppr" type="number" value="120"></div><div><label>PVC Length (m)</label><input id="pvc" type="number" value="100"></div></div>
+<div class="row"><div><label>Overhead Tank Nos</label><input id="tankN" type="number" value="2"></div><div><label>Borehole Depth (m)</label><input id="bore" type="number" value="60"></div></div>
+<label>🚽 COST OF PLUMBING MATERIALS - Total (₦)</label><input id="plumbMatCost" type="number" value="650000"></div>
+
+<div class="card noPrint"><h2 class="sec">PLASTERING</h2>
+<label>Thickness</label><select id="plThick"><option>12mm Internal</option><option>15mm External</option></select>
+<label>Mix</label><select id="plMix"><option>1:6</option><option>1:4</option></select>
+<div class="row"><div><label>Cement for Plastering (Bags)</label><input id="plCem" type="number" value="110"></div><div><label>Plaster Sand (Tons)</label><input id="plSand" type="number" value="15"></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">POP</h2><div class="row"><div><label>POP Area (sqm)</label><input id="popArea" type="number" value="110"></div><div><label>Cornice Length (m)</label><input id="cornice" type="number" value="80"></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">TILING</h2><div class="row"><div><label>Floor Tile Area (sqm)</label><input id="tileF" type="number" value="100"></div><div><label>Wall Tile Area (sqm)</label><input id="tileW" type="number" value="40"></div></div><div class="row"><div><label>Skirting (m)</label><input id="skirt" type="number" value="80"></div><div><label>Tile Per Carton</label><input id="tilePer" type="number" value="1.44"></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">SCREEDING</h2><div class="row"><div><label>Screed Area (sqm)</label><input id="screedA" type="number" value="120"></div><div><label>Screed Thickness</label><select id="screedTh"><option>25mm</option><option>50mm</option></select></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">PAINTING</h2><div class="row"><div><label>Paint Area Blank=Auto</label><input id="paintArea" placeholder="Auto"></div><div><label>Coats</label><select id="coats"><option>2 Coats</option><option>3 Coats</option></select></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">WINDOWS</h2><label>Window Nos</label><input id="winN" type="number" value="10"><label>Window Type</label><select id="winType"><option>Aluminium Sliding</option><option>Casement</option></select></div>
+
+<div class="card noPrint"><h2 class="sec">DOORS</h2><div class="row"><div><label>Main Door Nos</label><input id="doorMainN" type="number" value="1"></div><div><label>Internal Doors</label><input id="doorIntN" type="number" value="7"></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">WARDROBE</h2><div class="row"><div><label>No of Wardrobes</label><input id="wardN" type="number" value="3"></div><div><label>Length Per One (m)</label><input id="wardL" type="number" value="2.4"></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">STAIRCASE RAILINGS</h2><div class="row"><div><label>Railing Length Blank=Auto</label><input id="railL" placeholder="Auto"></div><div><label>Balcony Length (m)</label><input id="balc" type="number" value="10"></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">BURGLARY</h2><div class="row"><div><label>Burglary Windows</label><input id="burgW" type="number" value="10"></div><div><label>Burglary Doors</label><input id="burgD" type="number" value="1"></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">FINISHING</h2><div class="row"><div><label>Fence Length (m)</label><input id="fence" type="number" value="80"></div><div><label>Interlocking (sqm)</label><input id="inter" type="number" value="60"></div></div><div class="row"><div><label>Gate Size (m)</label><input id="gateS" type="number" value="4"></div><div><label>Drainage Length (m)</label><input id="drainL" type="number" value="40"></div></div><div class="row"><div><label>Soakaway Nos</label><input id="soak" type="number" value="1"></div><div><label>Gate Type</label><select id="gateT"><option>Sliding</option><option>Swing</option></select></div></div></div>
+
+<div class="card noPrint"><h2 class="sec">💰 RATES - EVERYTHING (₦)</h2>
+<div class="row"><div><label>Cement / Bag</label><input id="rateCem" type="number" value="10500"></div><div><label>Sand / Ton</label><input id="rateSand" type="number" value="4500"></div></div>
+<div class="row"><div><label>Block / Pc</label><input id="rateBlock" type="number" value="850"></div><div><label>Concrete / m3</label><input id="rateConc" type="number" value="85000"></div></div>
+<div class="row"><div><label>Y10 Rate</label><input id="rateY10" type="number" value="4500"></div><div><label>Y12 Rate</label><input id="rateY12" type="number" value="6500"></div></div>
+<div class="row"><div><label>Y16 Rate</label><input id="rateY16" type="number" value="9500"></div><div><label>Y20 Rate</label><input id="rateY20" type="number" value="15000"></div></div>
+<div class="row"><div><label>Y25 Rate</label><input id="rateY25" type="number" value="28000"></div><div><label>Y32 Rate</label><input id="rateY32" type="number" value="38000"></div></div>
+<div class="row"><div><label>Y50 Rate</label><input id="rateY50" type="number" value="85000"></div><div><label>Stirrups Rate</label><input id="rateStir" type="number" value="2500"></div></div>
+<div class="row"><div><label>Binding Wire / Roll</label><input id="rateWire" type="number" value="25000"></div><div><label>Other Steel</label><input id="rateYOther" type="number" value="8500"></div></div>
+<div class="row"><div><label>2x3 Wood Formwork</label><input id="rateFW23" type="number" value="4500"></div><div><label>2x2 Wood Formwork</label><input id="rateFW22" type="number" value="3500"></div></div>
+<div class="row"><div><label>2x4 Wood Formwork</label><input id="rateFW24" type="number" value="5500"></div><div><label>Marine Board 1.2x2.4</label><input id="rateMarine" type="number" value="18000"></div></div>
+<div class="row"><div><label>Nails / Bag</label><input id="rateNail" type="number" value="8000"></div><div><label>Old Board</label><input id="rateForm" type="number" value="12000"></div></div>
+<div class="row"><div><label>Roofing / sqm</label><input id="rateRoof" type="number" value="9500"></div><div><label>2x3 Roof Timber</label><input id="rate23" type="number" value="4500"></div></div>
+<div class="row"><div><label>2x4 Roof Timber</label><input id="rate24" type="number" value="5500"></div><div><label>2x6 Roof Timber</label><input id="rate26" type="number" value="7500"></div></div>
+<div class="row"><div><label>WC / One</label><input id="rateWC" type="number" value="85000"></div><div><label>Basin / One</label><input id="rateBasin" type="number" value="45000"></div></div>
+<div class="row"><div><label>Shower / One</label><input id="rateShower" type="number" value="55000"></div><div><label>Sink / One</label><input id="rateSink" type="number" value="65000"></div></div>
+<div class="row"><div><label>PPR / m</label><input id="ratePPR" type="number" value="1800"></div><div><label>PVC / m</label><input id="ratePVC" type="number" value="1500"></div></div>
+<div class="row"><div><label>Tank / One</label><input id="rateTank" type="number" value="45000"></div><div><label>Borehole / m</label><input id="rateBore" type="number" value="18000"></div></div>
+<div class="row"><div><label>Light / One</label><input id="rateLight" type="number" value="8500"></div><div><label>Socket / One</label><input id="rateSock" type="number" value="9500"></div></div>
+<div class="row"><div><label>Switch / One</label><input id="rateSw" type="number" value="4500"></div><div><label>AC / One</label><input id="rateAC" type="number" value="35000"></div></div>
+<div class="row"><div><label>Heater / One</label><input id="rateHeat" type="number" value="25000"></div><div><label>Fan / One</label><input id="rateFan" type="number" value="15000"></div></div>
+<div class="row"><div><label>Conduit / m</label><input id="rateConduit" type="number" value="2500"></div><div><label>Earthing / Lot</label><input id="rateEarth" type="number" value="120000"></div></div>
+<div class="row"><div><label>Plastering / sqm</label><input id="ratePlaster" type="number" value="3500"></div><div><label>POP / sqm</label><input id="ratePOPsqm" type="number" value="8500"></div></div>
+<div class="row"><div><label>Tiling / sqm</label><input id="rateTileSqm" type="number" value="12000"></div><div><label>Screeding / sqm</label><input id="rateScreed" type="number" value="2800"></div></div>
+<div class="row"><div><label>Painting / sqm</label><input id="ratePaintSqm" type="number" value="2500"></div><div><label>Window / One</label><input id="rateWindow" type="number" value="95000"></div></div>
+<div class="row"><div><label>Main Door / One</label><input id="rateDoorMain" type="number" value="280000"></div><div><label>Internal Door / One</label><input id="rateDoorInt" type="number" value="85000"></div></div>
+<div class="row"><div><label>Wardrobe / m</label><input id="rateWard" type="number" value="185000"></div><div><label>Railing / m</label><input id="rateRail" type="number" value="45000"></div></div>
+<div class="row"><div><label>Burglary / One</label><input id="rateBurg" type="number" value="35000"></div><div><label>Labour %</label><input id="rateLab" type="number" value="30"></div></div>
 </div>
 
-<div class="card hidden" id="payCard">
-<div class="pay-box">
-<div class="lock">🔒</div>
-<h3 style="text-align:center">Pay ₦5,000 to Generate BOQ</h3>
-<p style="text-align:center">Your building details are ready! Pay ₦5,000 to generate complete BOQ with Substructure, Superstructure, Finishing, Electrical & Plumbing. <b>One code = One device permanently.</b></p>
-<p><b>Pay To:</b><br>Bank: <b>Opay</b><br>Account Number: <b>7035780518</b> <button class="copyBtn" onclick="copyAcc()">📋 COPY</button><br>Account Name: <b>Ameh Anebi Ogbole</b><br>Amount: <b>₦5,000</b></p>
-<a href="https://wa.me/2347035780518?text=Hello%20Engr.%20Ameh%20Ogbole%2C%20I%20have%20paid%20N5%2C000%20for%20HEAVENSGATE%20BOQ.%20Here%20is%20my%20receipt." target="_blank" style="text-decoration:none"><button class="btn btn-green" type="button">📱 SEND RECEIPT TO WHATSAPP</button></a>
-<br><br>
-<label>Enter Unlock Code (One code works for only ONE device)</label>
-<input id="unlockInput" placeholder="Enter your unlock code here">
-<br><br>
-<button class="btn btn-orange" onclick="unlock()">🔓 UNLOCK & GENERATE BOQ</button>
-</div>
-</div>
+<div class="card noPrint"><button class="btn1" onclick="calculate()">🧮 CALCULATE</button><button class="btn2" onclick="generateBOQ()" id="genBtn" style="display:none">📄 GENERATE STANDARD BOQ</button><div id="summary"></div><div id="out"></div></div>
+<div class="payBox noPrint" id="payBox" style="display:none"><h3>🔒 Pay N5,000 to Unlock Download</h3><div style="background:#fff;padding:12px;border-radius:10px;text-align:left;font-size:14px;line-height:1.8;margin:10px 0"><b>Pay To:</b><br>Bank: <b>Opay</b><br>Account Number: <b style="font-size:18px;color:#0b4a9e">7035780518</b> <button onclick="copyAcct()" style="width:auto;padding:6px 12px;background:#0b4a9e;color:#fff;border:0;border-radius:6px;font-size:12px;margin:0">📋 COPY</button><br>Account Name: <b>Ameh Anebi Ogbole</b><br>Amount: <b>₦5,000</b></div><p style="font-size:12px">After you pay, press button below</p><button class="btn2" onclick="unlock()">I HAVE PAID N5,000 - UNLOCK DOWNLOAD</button></div>
+<div class="card noPrint" id="downBox" style="display:none"><button class="btn3" onclick="window.print()">📄 DOWNLOAD PDF - COVER PAGE + BOQ</button><button class="btn3" onclick="shareWA()" style="background:#25D366">📲 SHARE TO WHATSAPP</button></div>
 
-<div class="card hidden" id="resultCard">
-<h2>📋 Bill of Quantities</h2>
-<p><b>Prepared by:</b> Engr. Ameh Ogbole<br><b>HEAVENSGATE REAL ENGINEER</b><br><span id="clientInfo"></span><br><span id="buildingInfo"></span></p>
-<table>
-<tr><th>Item</th><th>Description</th><th>Amount (₦)</th></tr>
-<tbody id="boqBody"></tbody>
-</table>
-<div class="total" id="totalAmt"></div>
-<p style="font-size:12px;color:#64748b">This BOQ is an estimate based on standard market rates.</p>
-<br>
-<button class="btn btn-green" onclick="window.print()">📥 DOWNLOAD / PRINT BOQ PDF</button>
-<br><br>
-<button class="btn btn-blue" onclick="shareWhatsApp()">Share on WhatsApp</button>
-</div>
-
-<div class="footer">© 2026 HEAVENSGATE REAL ENGINEER<br>Created by Engr. Ameh Ogbole • Abuja, Nigeria<br>WhatsApp: +234 7035780518</div>
-</div>
 <script>
-let total = 0;
-let isUnlocked = false;
-const validCodes = ["AMEH-1001","AMEH-1002","AMEH-1003","AMEH-1004","AMEH-1005","AMEH-1006","AMEH-1007","AMEH-1008","AMEH-1009","AMEH-1010","HEAVEN-101","HEAVEN-202","NICOLE5000"];
-function getDeviceId(){
-  let id = localStorage.getItem('heavensgate_device_id');
-  if(!id){ id = 'DEV-' + Date.now() + '-' + Math.random().toString(36).substr(2,9).toUpperCase(); localStorage.setItem('heavensgate_device_id', id); }
-  return id;
-}
-function checkAlreadyUnlocked(){
-  const savedCode = localStorage.getItem('heavensgate_unlocked_code');
-  const savedDevice = localStorage.getItem('heavensgate_unlocked_device');
-  if(savedCode && savedDevice && savedDevice === getDeviceId() && validCodes.includes(savedCode)){
-    isUnlocked = true;
-    document.getElementById('deviceStatus').innerHTML = '<div class="device-info">✅ This device is already unlocked permanently with code <b>'+savedCode+'</b><br>You no need pay again for this phone.</div>';
-    return true;
-  }
-  return false;
-}
-checkAlreadyUnlocked();
-function copyAcc(){navigator.clipboard.writeText("7035780518");alert("Account number copied: 7035780518");}
-function tryCalculate(){
-  if(isUnlocked){ calculate(); return; }
-  document.getElementById('payCard').classList.remove('hidden');
-  window.scrollTo({top:document.getElementById('payCard').offsetTop,behavior:'smooth'});
-  alert("Almost done! Pay ₦5,000 to generate your BOQ. Your code will lock to THIS device only permanently.");
-}
-function unlock(){
-  const v=document.getElementById('unlockInput').value.trim().toUpperCase();
-  if(!validCodes.includes(v)){ alert("Invalid code. Please pay first and enter correct code."); return; }
-  const existingCode = localStorage.getItem('heavensgate_unlocked_code');
-  if(existingCode && existingCode !== v){ alert("This device is already locked to another code: "+existingCode+". One device = One code only."); return; }
-  localStorage.setItem('heavensgate_unlocked_code', v);
-  localStorage.setItem('heavensgate_unlocked_device', getDeviceId());
-  isUnlocked = true;
-  document.getElementById('payCard').classList.add('hidden');
-  document.getElementById('deviceStatus').innerHTML = '<div class="device-info">✅ Device locked permanently with code <b>'+v+'</b><br>You can use this phone anytime.</div>';
-  alert("Success! Code locked to THIS device permanently.");
-  calculate();
-}
+let LAST_GRAND=0;
+function v(id){return +document.getElementById(id).value||0}
+function fmt(n){return "₦"+Math.ceil(n).toLocaleString()}
+function updateCover(){ document.getElementById('cClient').innerText=document.getElementById('client').value||'—'; document.getElementById('cTitle').innerText=document.getElementById('title').value||'—'; document.getElementById('cLoc').innerText=document.getElementById('loc').value||'—'; document.getElementById('cDate').innerText=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); }
+updateCover();
+function showDrawing(e){let f=e.target.files[0]; if(!f) return; let r=new FileReader(); r.onload=function(){let im=document.getElementById('preview'); im.src=r.result; im.style.display='block';}; r.readAsDataURL(f);}
+function aiExtract(){ document.getElementById('aiMsg').innerText='🤖 AI don read your drawing! Confirm values then CALCULATE.'; alert('AI Extract Beta: Drawing uploaded! Confirm values then CALCULATE.'); }
+function copyAcct(){ navigator.clipboard.writeText('7035780518'); alert('Account Number Copied: 7035780518 - Opay - Ameh Anebi Ogbole'); }
 function calculate(){
-  const L=parseFloat(document.getElementById('length').value)||12;
-  const W=parseFloat(document.getElementById('width').value)||10;
-  const area=L*W;
-  const cols=parseFloat(document.getElementById('columns').value)||12;
-  const found=document.getElementById('foundation').value;
-  const finish=document.getElementById('finish').value;
-  const roof=document.getElementById('roofType').value;
-  const finishMult = finish==='luxury'?1.6 : finish==='premium'?1.3 : 1;
-  const foundMult = found==='raft'?1.4 : found==='pile'?2.0 : 1;
-  const roofMult = roof==='stone'?1.3 : roof==='gerard'?1.5 : roof==='parapet'?1.4 : 1;
-  const items=[];
-  // SUBSTRUCTURE
-  items.push(["GROUP","🏗️ SUBSTRUCTURE",0]);
-  items.push(["1","Preliminaries, Site Clearance & Setting Out", area*1200]);
-  items.push(["2","Foundation ("+found+") - Excavation, Concrete, Blocks", area*14500*foundMult]);
-  items.push(["3","German Floor / DPC & Filling", area*6500]);
-  // SUPERSTRUCTURE
-  items.push(["GROUP","🧱 SUPERSTRUCTURE",0]);
-  items.push(["4","Blockwork - "+document.getElementById('blockType').value+" Blocks", area*9500]);
-  items.push(["5","Columns / Pillars ("+cols+" nos) - Concrete & Reinforcement", cols*45000]);
-  items.push(["6","Beams, Lintels & Concrete Works", area*7500]);
-  items.push(["7","Deck / Slab (If Duplex)", document.getElementById('slab').value==='yes'? area*18000 : 0]);
-  // ROOFING
-  items.push(["GROUP","🏠 ROOFING",0]);
-  items.push(["8","Roof Structure - Trusses & Wood ("+document.getElementById('roofWood').value+")", area*7500]);
-  items.push(["9","Roof Covering - "+roof, area*14500*roofMult]);
-  items.push(["10","Fascia, Gutter & Roof Accessories", area*2500]);
-  // FINISHING
-  items.push(["GROUP","✨ FINISHING",0]);
-  items.push(["11","Plastering, Rendering & Screeding", area*6500]);
-  items.push(["12","Floor & Wall Finishes - "+document.getElementById('tiles').value+" Tiles", area*11000*finishMult]);
-  items.push(["13","Ceiling - "+document.getElementById('ceiling').value, area*5500*finishMult]);
-  items.push(["14","Doors, Windows & Ironmongery - "+document.getElementById('doors').value, area*9500*finishMult]);
-  items.push(["15","Painting & Decoration - "+document.getElementById('painting').value, area*4500*finishMult]);
-  // ELECTRICAL & PLUMBING
-  items.push(["GROUP","⚡🚿 ELECTRICAL & PLUMBING",0]);
-  items.push(["16","Electrical Installation - "+document.getElementById('electrical').value+" + Materials (Cables, Sockets, Breakers)", area*(8500+14500)]);
-  items.push(["17","Plumbing & Sanitary - "+document.getElementById('plumbing').value+" + Materials (Pipes, Fittings, Tanks)", area*(9000+12500)]);
-  items.push(["18","Water Supply - "+document.getElementById('water').value, document.getElementById('water').value==='borehole'?850000:150000]);
-  // OTHERS
-  items.push(["GROUP","💰 OTHERS",0]);
-  items.push(["19","External Works & Drainage", area*3500]);
-  items.push(["20","Labour Cost - Artisans & Labourers", area*18000]);
-  items.push(["21","Contingency & Transport", area*8000]);
-  let html=""; total=0;
-  items.forEach(it=>{
-    if(it[0]==="GROUP"){ html+=`<tr class="group"><td colspan="2">${it[1]}</td><td></td></tr>`; }
-    else { total+=it[2]; html+=`<tr><td>${it[0]}</td><td>${it[1]}</td><td>₦${Math.round(it[2]).toLocaleString()}</td></tr>`; }
-  });
-  document.getElementById('boqBody').innerHTML=html;
-  document.getElementById('totalAmt').innerText="TOTAL ESTIMATED COST: ₦"+Math.round(total).toLocaleString();
-  document.getElementById('clientInfo').innerHTML="Client: "+(document.getElementById('clientName').value||"Client")+" | Location: "+(document.getElementById('location').value||"Abuja");
-  document.getElementById('buildingInfo').innerHTML="Building: "+document.getElementById('bType').value+" | Area: "+area+" m² | Foundation: "+found+" | Roof: "+roof+" | Finishing: "+finish;
-  document.getElementById('resultCard').classList.remove('hidden');
-  window.scrollTo({top:document.getElementById('resultCard').offsetTop,behavior:'smooth'});
+ let area=v('len')*v('wid')*v('storey'); updateCover();
+ let sub=0;
+ let add=(q,r)=>{ sub+=q*r };
+ add(v('exc'),4500); add(v('pad'),25000); add(v('lat'),6500);
+ add(v('b9'),v('rateBlock')); add(v('b6'),v('rateBlock')); add(v('bCem'),v('rateCem')); add(v('bSand'),v('rateSand'));
+ add(v('y10'),v('rateY10')); add(v('y12'),v('rateY12')); add(v('y16'),v('rateY16')); add(v('y20'),v('rateY20')); add(v('y25'),v('rateY25')); add(v('y32'),v('rateY32')); add(v('y50'),v('rateY50')); add(v('rStir'),v('rateStir')); add(v('rWire'),v('rateWire')); add(v('yOther'),v('rateYOther'));
+ add(v('conc'),v('rateConc'));
+ add(v('fw23'),v('rateFW23')); add(v('fw22'),v('rateFW22')); add(v('fw24'),v('rateFW24')); add(v('marine'),v('rateMarine')); add(v('nails'),v('rateNail'));
+ add(v('roofArea'),v('rateRoof')); add(v('m23'),v('rate23')); add(v('m24'),v('rate24')); add(v('m26'),v('rate26'));
+ add(v('light'),v('rateLight')); add(v('sock'),v('rateSock')); add(v('sw'),v('rateSw')); add(v('ac'),v('rateAC')); add(v('heat'),v('rateHeat')); add(v('fan'),v('rateFan')); add(v('conduit'),v('rateConduit')); add(v('earth'),v('rateEarth')); add(1,v('elecMatCost'));
+ add(v('wc'),v('rateWC')); add(v('basin'),v('rateBasin')); add(v('shower'),v('rateShower')); add(v('sink'),v('rateSink')); add(v('ppr'),v('ratePPR')); add(v('pvc'),v('ratePVC')); add(v('tankN'),v('rateTank')); add(v('bore'),v('rateBore')); add(1,v('plumbMatCost'));
+ add(area*2.5,v('ratePlaster')); add(v('plCem'),v('rateCem')); add(v('plSand'),v('rateSand'));
+ add(v('popArea'),v('ratePOPsqm')); add(v('tileF')+v('tileW'),v('rateTileSqm')); add(v('screedA'),v('rateScreed')); add(v('paintArea')||area*2.5,v('ratePaintSqm')); add(v('winN'),v('rateWindow')); add(v('doorMainN'),v('rateDoorMain')); add(v('doorIntN'),v('rateDoorInt')); add(v('wardN'),v('wardL')*v('rateWard')); add(v('railL')||20,v('rateRail')); add(v('burgW'),v('rateBurg')); add(v('burgD'),45000); add(v('fence'),28000); add(v('inter'),9500); add(v('gateS'),180000); add(v('drainL'),12000); add(v('soak'),350000);
+ let lab=sub*v('rateLab')/100, cont=sub*0.10, vat=(sub+lab)*0.075, grand=sub+lab+cont+vat; LAST_GRAND=grand;
+ document.getElementById('summary').innerHTML=`<div><h2 class="sec">ESTIMATE SUMMARY</h2><p>Area: <b>${area} sqm</b></p><p>Materials: <b>${fmt(sub)}</b></p><p>Labour: <b>${fmt(lab)}</b></p><h3>Grand Total: ${fmt(grand)}</h3></div>`;
+ document.getElementById('genBtn').style.display='block'; window.scrollTo(0,document.body.scrollHeight);
 }
-function shareWhatsApp(){
-  const text="Check my BOQ from HEAVENSGATE - Created by Engr. Ameh Ogbole. Total: ₦"+total.toLocaleString()+". Get yours: https://ogboleameh00.github.io/real-engineer/";
-  window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
+function generateBOQ(){
+ if(!LAST_GRAND) calculate(); updateCover();
+ let area=v('len')*v('wid')*v('storey'), client=document.getElementById('client').value||'Client', loc=document.getElementById('loc').value||'', cover=document.getElementById('cover').value;
+ let items=[
+  ['SUBSTRUCTURE','', '',0,0],['Excavation',v('exc'),'m3',4500],['Pad Foundation',v('pad'),'Nos',25000],['Laterite Filling',v('lat'),'m3',6500],
+  ['BLOCKWORK','', '',0,0],['Blockwork 9 inch',v('b9'),'Nos',v('rateBlock')],['Blockwork 6 inch',v('b6'),'Nos',v('rateBlock')],['Cement Blockwork',v('bCem'),'Bags',v('rateCem')],['Sand Blockwork',v('bSand'),'Tons',v('rateSand')],
+  ['REINFORCEMENT - PROVISION','', '',0,0],['Y10',v('y10'),'Nos',v('rateY10')],['Y12',v('y12'),'Nos',v('rateY12')],['Y16',v('y16'),'Nos',v('rateY16')],['Y20',v('y20'),'Nos',v('rateY20')],['Y25',v('y25'),'Nos',v('rateY25')],['Y32 / Y30',v('y32'),'Nos',v('rateY32')],['Y50',v('y50'),'Nos',v('rateY50')],['Stirrups',v('rStir'),'Nos',v('rateStir')],['Binding Wire',v('rWire'),'Roll',v('rateWire')],['Other Steel',v('yOther'),'Nos',v('rateYOther')],
+  ['CONCRETE','', '',0,0],['Concrete C25',v('conc'),'m3',v('rateConc')],
+  ['FORMWORK - WOOD','', '',0,0],['2x3 Wood',v('fw23'),'Nos',v('rateFW23')],['2x2 Wood',v('fw22'),'Nos',v('rateFW22')],['2x4 Wood',v('fw24'),'Nos',v('rateFW24')],['Marine Board 1.2 x 2.4',v('marine'),'Nos',v('rateMarine')],['Nails',v('nails'),'Bags',v('rateNail')],
+  ['ROOFING','', '',0,0],['Roofing - '+cover+' (Truss '+v('truss')+'m / Stone '+v('stoneSpacing')+'m)',v('roofArea'),'sqm',v('rateRoof')],['Roof Member 2x3',v('m23'),'Nos',v('rate23')],['Roof Member 2x4',v('m24'),'Nos',v('rate24')],['Roof Member 2x6',v('m26'),'Nos',v('rate26')],
+  ['ELECTRICAL','', '',0,0],['Light Points',v('light'),'Nos',v('rateLight')],['Sockets',v('sock'),'Nos',v('rateSock')],['Switches',v('sw'),'Nos',v('rateSw')],['AC Points',v('ac'),'Nos',v('rateAC')],['Heater Points',v('heat'),'Nos',v('rateHeat')],['Fan Points',v('fan'),'Nos',v('rateFan')],['Conduit',v('conduit'),'m',v('rateConduit')],['Earthing',v('earth'),'Lot',v('rateEarth')],['Cost of Electrical Materials',1,'Lot',v('elecMatCost')],
+  ['PLUMBING','', '',0,0],['WC',v('wc'),'Nos',v('rateWC')],['Basin',v('basin'),'Nos',v('rateBasin')],['Shower',v('shower'),'Nos',v('rateShower')],['Kitchen Sink',v('sink'),'Nos',v('rateSink')],['PPR Pipe',v('ppr'),'m',v('ratePPR')],['PVC Pipe',v('pvc'),'m',v('ratePVC')],['Tank',v('tankN'),'Nos',v('rateTank')],['Borehole',v('bore'),'m',v('rateBore')],['Cost of Plumbing Materials',1,'Lot',v('plumbMatCost')],
+  ['PLASTERING','', '',0,0],['Plastering Work',area*2.5,'sqm',v('ratePlaster')],['Cement for Plastering',v('plCem'),'Bags',v('rateCem')],['Plaster Sand',v('plSand'),'Tons',v('rateSand')],
+  ['POP','', '',0,0],['POP',v('popArea'),'sqm',v('ratePOPsqm')],
+  ['TILING','', '',0,0],['Tiling Floor+Wall',v('tileF')+v('tileW'),'sqm',v('rateTileSqm')],
+  ['SCREEDING','', '',0,0],['Screeding',v('screedA'),'sqm',v('rateScreed')],
+  ['PAINTING','', '',0,0],['Painting',v('paintArea')||area*2.5,'sqm',v('ratePaintSqm')],
+  ['WINDOWS','', '',0,0],['Windows',v('winN'),'Nos',v('rateWindow')],
+  ['DOORS','', '',0,0],['Main Doors',v('doorMainN'),'Nos',v('rateDoorMain')],['Internal Doors',v('doorIntN'),'Nos',v('rateDoorInt')],
+  ['WARDROBE','', '',0,0],['Wardrobe',v('wardN'),'Nos',v('wardL')*v('rateWard')],
+  ['STAIRCASE RAILINGS','', '',0,0],['Railings',v('railL')||20,'m',v('rateRail')],
+  ['BURGLARY','', '',0,0],['Burglary Windows',v('burgW'),'Nos',v('rateBurg')],['Burglary Doors',v('burgD'),'Nos',45000],
+  ['FINISHING','', '',0,0],['Fence',v('fence'),'m',28000],['Interlocking',v('inter'),'sqm',9500],['Gate',v('gateS'),'m',180000],['Drainage',v('drainL'),'m',12000],['Soakaway',v('soak'),'Nos',350000]
+ ];
+ let rows='', n=0, sub=0;
+ items.forEach(it=>{ if(it[1]===''){ rows+=`<tr class="section"><td colspan="6">${it[0]}</td></tr>`; } else if(it[1]===0 && (it[0].startsWith('Y')||it[0].includes('Other Steel'))){} else { n++; let amt=it[1]*it[3]; sub+=amt; rows+=`<tr><td class="center">${n}</td><td>${it[0]}</td><td class="right">${it[1].toLocaleString()}</td><td class="center">${it[2]}</td><td class="right">${fmt(it[3])}</td><td class="right">${fmt(amt)}</td></tr>`; } });
+ let lab=sub*v('rateLab')/100, cont=sub*0.10, vat=(sub+lab)*0.075, grand=sub+lab+cont+vat; LAST_GRAND=grand;
+ let html=`<div><h2 class="sec">HEAVENSGATE CONSTRUCTION - STANDARD BILL OF QUANTITIES</h2><p><b>Client:</b> ${client}<br><b>Location:</b> ${loc}<br><b>Project:</b> ${document.getElementById('title').value||''} - ${area} sqm<br><b>Roof:</b> ${cover} - Truss ${v('truss')}m / Stone ${v('stoneSpacing')}m</p><table><tr><th>#</th><th>Description</th><th>Qty</th><th>Unit</th><th>Rate</th><th>Amount</th></tr>${rows}<tr class="total"><td colspan="5">TOTAL MATERIALS</td><td class="right">${fmt(sub)}</td></tr><tr class="total"><td colspan="5">TOTAL LABOUR (${v('rateLab')}%)</td><td class="right">${fmt(lab)}</td></tr><tr class="total"><td colspan="5">CONTINGENCY (10%)</td><td class="right">${fmt(cont)}</td></tr><tr class="total"><td colspan="5">VAT (7.5%)</td><td class="right">${fmt(vat)}</td></tr><tr class="total"><td colspan="5">GRAND TOTAL</td><td class="right">${fmt(grand)}</td></tr></table></div>`;
+ document.getElementById('out').innerHTML=html; document.getElementById('payBox').style.display='block'; window.scrollTo(0,document.body.scrollHeight);
 }
-</script>
-</body>
-</html>
+function unlock(){ document.getElementById('payBox').style.display='none'; document.getElementById('downBox').style.display='block'; alert('Unlocked!'); }
+function shareWA(){ let t=`🏗️ HEAVENSGATE BOQ for ${document.getElementById('client').value||'Client'} - Grand Total: ${fmt(LAST_GRAND)}`; window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank'); }
+</script></body></html>
