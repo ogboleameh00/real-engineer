@@ -27,7 +27,6 @@ input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;fo
 .cover .creator-cover{font-size:14px;margin:8px 0;color:#fbbf24;font-weight:700}
 .cover p{color:#cbd5e1;font-size:14px}
 .pay-box{background:#fef9c3;border:2px dashed #f59e0b;border-radius:14px;padding:16px}
-.pay-box h3{margin:0 0 10px}
 .copyBtn{background:#1d4ed8;color:#fff;border:none;padding:6px 12px;border-radius:8px;font-weight:700;cursor:pointer}
 table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
 th,td{border:1px solid #e5e7eb;padding:8px;text-align:left}
@@ -36,6 +35,7 @@ th{background:#0f172a;color:#fff}
 .hidden{display:none}
 .footer{text-align:center;font-size:12px;color:#64748b;padding:10px}
 .lock{font-size:40px;text-align:center}
+.device-info{background:#dcfce7;border-radius:10px;padding:10px;font-size:13px;text-align:center}
 </style>
 </head>
 <body>
@@ -48,33 +48,12 @@ th{background:#0f172a;color:#fff}
 <div class="cover">
 <h1>HEAVENSGATE<br><span>REAL ENGINEER</span></h1>
 <p class="creator-cover">Created by Engr. Ameh Ogbole</p>
-<p>Professional Bill of Quantities (BOQ) Calculator<br>Get your complete BOQ in 2 minutes. Accurate. Professional. Trusted.</p>
+<p>Professional Bill of Quantities (BOQ) Calculator<br>Get your complete BOQ in 2 minutes.</p>
 <p style="color:#fbbf24;font-weight:800">HEAVENSGATE CONSTRUCTION</p>
 </div>
-<div class="card" id="payCard">
-<div class="pay-box">
-<div class="lock">🔒</div>
-<h3 style="text-align:center">Pay ₦5,000 to Use Calculator</h3>
-<p style="text-align:center">Please pay first to unlock the BOQ Calculator. You will receive your unlock code after payment.</p>
-<p><b>Pay To:</b><br>
-Bank: <b>Opay</b><br>
-Account Number: <b>7035780518</b>
-<button class="copyBtn" onclick="copyAcc()">📋 COPY</button><br>
-Account Name: <b>Ameh Anebi Ogbole</b><br>
-Amount: <b>₦5,000</b></p>
-<a href="https://wa.me/2347035780518?text=Hello%20Engr.%20Ameh%20Ogbole%2C%20I%20have%20paid%20N5%2C000%20for%20HEAVENSGATE%20BOQ.%20Here%20is%20my%20receipt." target="_blank" style="text-decoration:none">
-<button class="btn btn-green" type="button">📱 SEND RECEIPT TO WHATSAPP</button>
-</a>
-<br><br>
-<label>Enter Unlock Code (You will receive your code after payment)</label>
-<input id="unlockInput" placeholder="Enter your unlock code here">
-<br><br>
-<button class="btn btn-orange" onclick="unlock()">🔓 UNLOCK CALCULATOR WITH CODE</button>
-<p style="text-align:center;font-size:13px;color:#555">No code yet? Please pay first, send your receipt via WhatsApp, and you will receive your unlock code.</p>
-</div>
-</div>
-<div class="card hidden" id="calcCard">
+<div class="card" id="calcCard">
 <h2>🏠 Building Details</h2>
+<div id="deviceStatus"></div>
 <label>Client Name</label>
 <input id="clientName" placeholder="Enter client name">
 <label>Project Location</label>
@@ -101,19 +80,33 @@ Amount: <b>₦5,000</b></p>
 <option value="luxury">Luxury Finishing</option>
 </select>
 <br><br>
-<button class="btn btn-blue" onclick="calculate()">CALCULATE BOQ →</button>
+<button class="btn btn-blue" onclick="tryCalculate()">CALCULATE BOQ →</button>
+<p style="text-align:center;font-size:13px;color:#555">Fill details, press CALCULATE to generate your BOQ.</p>
+</div>
+<div class="card hidden" id="payCard">
+<div class="pay-box">
+<div class="lock">🔒</div>
+<h3 style="text-align:center">Pay ₦5,000 to Generate BOQ</h3>
+<p style="text-align:center">Your details are ready! Pay ₦5,000 to generate your complete BOQ. <b>One code = One device permanently.</b></p>
+<p><b>Pay To:</b><br>Bank: <b>Opay</b><br>Account Number: <b>7035780518</b> <button class="copyBtn" onclick="copyAcc()">📋 COPY</button><br>Account Name: <b>Ameh Anebi Ogbole</b><br>Amount: <b>₦5,000</b></p>
+<a href="https://wa.me/2347035780518?text=Hello%20Engr.%20Ameh%20Ogbole%2C%20I%20have%20paid%20N5%2C000%20for%20HEAVENSGATE%20BOQ.%20Here%20is%20my%20receipt." target="_blank" style="text-decoration:none"><button class="btn btn-green" type="button">📱 SEND RECEIPT TO WHATSAPP</button></a>
+<br><br>
+<label>Enter Unlock Code (One code works for only ONE device)</label>
+<input id="unlockInput" placeholder="Enter your unlock code here">
+<br><br>
+<button class="btn btn-orange" onclick="unlock()">🔓 UNLOCK & GENERATE BOQ</button>
+<p style="text-align:center;font-size:13px;color:#555">No code yet? Pay first, send receipt, you will receive your code. Do not share your code — it will lock to this device only.</p>
+</div>
 </div>
 <div class="card hidden" id="resultCard">
 <h2>📋 Bill of Quantities</h2>
-<p><b>Prepared by:</b> Engr. Ameh Ogbole<br>
-<b>HEAVENSGATE REAL ENGINEER</b><br>
-<span id="clientInfo"></span></p>
+<p><b>Prepared by:</b> Engr. Ameh Ogbole<br><b>HEAVENSGATE REAL ENGINEER</b><br><span id="clientInfo"></span></p>
 <table>
 <tr><th>Item</th><th>Description</th><th>Amount (₦)</th></tr>
 <tbody id="boqBody"></tbody>
 </table>
 <div class="total" id="totalAmt"></div>
-<p style="font-size:12px;color:#64748b">This BOQ is an estimate based on standard market rates. Final cost may vary based on location and material prices.</p>
+<p style="font-size:12px;color:#64748b">This BOQ is an estimate based on standard market rates.</p>
 <br>
 <button class="btn btn-green" onclick="window.print()">📥 DOWNLOAD / PRINT BOQ PDF</button>
 <br><br>
@@ -123,51 +116,54 @@ Amount: <b>₦5,000</b></p>
 </div>
 <script>
 let total = 0;
-function copyAcc(){
-  navigator.clipboard.writeText("7035780518");
-  alert("Account number copied: 7035780518");
+let isUnlocked = false;
+const validCodes = ["AMEH-1001","AMEH-1002","AMEH-1003","AMEH-1004","AMEH-1005","AMEH-1006","AMEH-1007","AMEH-1008","AMEH-1009","AMEH-1010","HEAVEN-101","HEAVEN-202","NICOLE5000"];
+function getDeviceId(){
+  let id = localStorage.getItem('heavensgate_device_id');
+  if(!id){
+    id = 'DEV-' + Date.now() + '-' + Math.random().toString(36).substr(2,9).toUpperCase();
+    localStorage.setItem('heavensgate_device_id', id);
+  }
+  return id;
 }
-// ===== OGA ENGR AMEH - NA YOU DEY CREATE CODES HERE =====
-// To add new code, just add am inside the list with comma, like "AMEH-1005",
-// To remove old code wey don share, just delete am from list.
-const validCodes = [
-"AMEH-1001",
-"AMEH-1002",
-"AMEH-1003",
-"AMEH-1004",
-"AMEH-1005",
-"AMEH-1006",
-"AMEH-1007",
-"AMEH-1008",
-"AMEH-1009",
-"AMEH-1010",
-"HEAVEN-101",
-"HEAVEN-202",
-"NICOLE5000"
-];
+function checkAlreadyUnlocked(){
+  const savedCode = localStorage.getItem('heavensgate_unlocked_code');
+  const savedDevice = localStorage.getItem('heavensgate_unlocked_device');
+  if(savedCode && savedDevice && savedDevice === getDeviceId() && validCodes.includes(savedCode)){
+    isUnlocked = true;
+    document.getElementById('deviceStatus').innerHTML = '<div class="device-info">✅ This device is already unlocked permanently with code <b>'+savedCode+'</b><br>You no need pay again for this phone.</div>';
+    return true;
+  }
+  return false;
+}
+checkAlreadyUnlocked();
+function copyAcc(){navigator.clipboard.writeText("7035780518");alert("Account number copied: 7035780518");}
+function tryCalculate(){
+  if(isUnlocked){ calculate(); return; }
+  document.getElementById('payCard').classList.remove('hidden');
+  window.scrollTo({top:document.getElementById('payCard').offsetTop,behavior:'smooth'});
+  alert("Almost done! Pay ₦5,000 to generate your BOQ. Your code will lock to THIS device only permanently.");
+}
 function unlock(){
   const v=document.getElementById('unlockInput').value.trim().toUpperCase();
-  if(validCodes.includes(v)){
-    document.getElementById('calcCard').classList.remove('hidden');
-    document.getElementById('payCard').classList.add('hidden');
-    alert("Success! Calculator unlocked. Welcome to HEAVENSGATE.");
-    window.scrollTo({top:document.getElementById('calcCard').offsetTop,behavior:'smooth'});
-  } else {
-    alert("Invalid code. Please pay first and enter the correct code sent to you on WhatsApp.");
+  if(!validCodes.includes(v)){ alert("Invalid code. Please pay first and enter correct code."); return; }
+  const existingCode = localStorage.getItem('heavensgate_unlocked_code');
+  if(existingCode && existingCode !== v){
+    alert("This device is already locked to another code: "+existingCode+". One device = One code only. Contact Engr. Ameh if you need to change device.");
+    return;
   }
+  localStorage.setItem('heavensgate_unlocked_code', v);
+  localStorage.setItem('heavensgate_unlocked_device', getDeviceId());
+  isUnlocked = true;
+  document.getElementById('payCard').classList.add('hidden');
+  document.getElementById('deviceStatus').innerHTML = '<div class="device-info">✅ Device locked permanently with code <b>'+v+'</b><br>You can use this phone anytime, no need pay again.</div>';
+  alert("Success! This code is now locked to THIS device permanently. You can use this phone anytime.");
+  calculate();
 }
 function calculate(){
   const L=parseFloat(document.getElementById('length').value)||12;
   const W=parseFloat(document.getElementById('width').value)||10;
   const area=L*W;
-  const rooms=parseInt(document.getElementById('rooms').value)||3;
-  const toilets=parseInt(document.getElementById('toilets').value)||2;
-  const finish=document.getElementById('finish').value;
-  let rate=85000;
-  if(finish==='premium') rate=120000;
-  if(finish==='luxury') rate=180000;
-  // FULL BOQ - Same as old 226 lines version
-  // All items must match to give total ₦46,494,380 for default test
   const items=[
     ["1","Preliminaries & Site Clearance", area*1200],
     ["2","Substructure - Foundation & German Floor", area*14500],
@@ -185,12 +181,8 @@ function calculate(){
     ["14","Labour Cost - Artisans & Labourers", area*18000],
     ["15","Contingency & Transport", area*8000],
   ];
-  let html="";
-  total=0;
-  items.forEach(it=>{
-    total+=it[2];
-    html+=`<tr><td>${it[0]}</td><td>${it[1]}</td><td>₦${it[2].toLocaleString()}</td></tr>`;
-  });
+  let html=""; total=0;
+  items.forEach(it=>{ total+=it[2]; html+=`<tr><td>${it[0]}</td><td>${it[1]}</td><td>₦${it[2].toLocaleString()}</td></tr>`; });
   document.getElementById('boqBody').innerHTML=html;
   document.getElementById('totalAmt').innerText="TOTAL ESTIMATED COST: ₦"+total.toLocaleString();
   document.getElementById('clientInfo').innerHTML="Client: "+(document.getElementById('clientName').value||"Client")+" | Location: "+(document.getElementById('location').value||"Abuja");
