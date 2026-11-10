@@ -1,262 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HEAVENSGATE - App</title>
-<meta name="theme-color" content="#0f2a5a">
-<meta name="description" content="HEAVENSGATE CONSTRUCTION - Complete Building Estimator">
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HEAVENSGATE - Real Engineer Formal BOQ</title>
 <style>
-*{
-box-sizing:border-box;
-}
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#eef2f7;
-color:#111;
-}
-header{
-background:#0f2a5a;
-color:#fff;
-padding:24px 16px;
-text-align:center;
-}
-header h1{
-margin:0;
-font-size:30px;
-letter-spacing:1px;
-line-height:1.2;
-}
-header p{
-margin:6px 0;
-opacity:.95;
-}
-.badge{
-background:#ffcc00;
-color:#000;
-padding:7px 14px;
-border-radius:20px;
-font-weight:bold;
-display:inline-block;
-margin-top:10px;
-}
-.wrap{
-max-width:920px;
-margin:auto;
-padding:14px;
-}
-.card{
-background:#fff;
-border-radius:16px;
-padding:18px;
-margin:12px 0;
-box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
-h2{
-margin:0 0 8px;
-color:#0f2a5a;
-}
-label{
-font-weight:bold;
-display:block;
-margin:13px 0 5px;
-}
-input,select{
-width:100%;
-padding:13px;
-border:1px solid #ccc;
-border-radius:11px;
-font-size:16px;
-background:#fff;
-}
-.row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-}
-button{
-width:100%;
-padding:15px;
-border:0;
-border-radius:12px;
-font-weight:bold;
-font-size:17px;
-cursor:pointer;
-margin-top:12px;
-}
-.btn-blue{
-background:#0f2a5a;
-color:#fff;
-}
-.btn-yellow{
-background:#ffcc00;
-color:#000;
-}
-.btn-green{
-background:#0b8a3e;
-color:#fff;
-}
-.btn-dark{
-background:#111;
-color:#fff;
-}
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:12px;
-font-size:14px;
-}
-th,td{
-border:1px solid #ddd;
-padding:9px;
-text-align:left;
-}
-th{
-background:#0f2a5a;
-color:#fff;
-}
-.total{
-font-size:23px;
-font-weight:bold;
-text-align:center;
-padding:14px;
-background:#fff8d6;
-border-radius:12px;
-margin-top:12px;
-}
-.split{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-top:12px;
-text-align:center;
-}
-.split div{
-background:#eef2f7;
-padding:14px;
-border-radius:12px;
-}
-.split b{
-font-size:19px;
-}
-small{
-color:#666;
-display:block;
-margin-top:10px;
-line-height:1.5;
-}
-footer{
-text-align:center;
-padding:22px;
-color:#555;
-font-weight:bold;
-}
-@media print{
-header button,.no-print{
-display:none!important;
-}
-.card{
-box-shadow:none;
-border:1px solid #ddd;
-}
-}
-</style>
-</head>
-<body>
-<header>
-<h1>🧱 HEAVENSGATE<br>CONSTRUCTION</h1>
-<p>Created by Engr. Ogbole Ameh</p>
-<p>Complete Building Estimator</p>
-<p>Foundation to Finishing + STANDARD BOQ</p>
-<span class="badge">✅ Material + Labour Separate | Download PDF</span>
-<br><br>
-<button onclick="installApp()" style="width:auto;background:#ffcc00;color:#000;padding:11px 22px;border-radius:22px">📲 INSTALL APP</button>
-</header>
-<div class="wrap">
-<div class="card">
-<h2>1. Project Details</h2>
-<label>Client Name</label>
-<input id="client" placeholder="e.g. Mr. John Doe">
-<label>Location</label>
-<input id="loc" placeholder="e.g. Abuja">
-<label>Building Type</label>
-<select id="type">
-<option value="1">Bungalow - 3 Bedroom</option>
-<option value="1.15">Bungalow - 4 Bedroom</option>
-<option value="1.35">Duplex - 4 Bedroom</option>
-<option value="1.6">Duplex - 5 Bedroom</option>
-<option value="1.9">Storey Building / Commercial</option>
-</select>
-<label>Floor Area (sqm)</label>
-<input type="number" id="area" value="150">
-<label>Finishing Level</label>
-<select id="rate">
-<option value="180000">Standard - N180,000 / sqm</option>
-<option value="250000">Premium - N250,000 / sqm</option>
-<option value="350000">Luxury - N350,000 / sqm</option>
-</select>
-<button class="btn-blue" onclick="calc()">CALCULATE ESTIMATE</button>
+body{font-family:Arial;padding:12px;background:#f1f5f9} .card{background:#fff;padding:14px;border-radius:12px;margin-bottom:12px}
+h1{text-align:center;color:#0f172a;font-size:22px} h2{text-align:center;background:#0f172a;color:#fff;padding:8px;border-radius:8px;font-size:15px}
+label{font-weight:700;font-size:13px;display:block;margin-top:8px} input,select{width:100%;padding:10px;margin:4px 0 8px;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box}
+.row{display:flex;gap:8px} .row>div{flex:1}
+button{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;font-size:16px;margin:6px 0;cursor:pointer}
+.btn1{background:#2563eb;color:#fff} .btn2{background:#f59e0b} .btn3{background:#16a34a;color:#fff}
+table{width:100%;border-collapse:collapse;font-size:12px} th{background:#0f172a;color:#fff;padding:7px} td{padding:6px;border-bottom:1px solid #ddd}
+.section td{background:#fef3c7;font-weight:900} .labour td{background:#dcfce7;font-weight:700;color:#166534} .total td{background:#0f172a;color:#fff;font-weight:900} .right{text-align:right} .center{text-align:center}
+</style></head><body>
+<h1>🏗️ HEAVENSGATE<br><small>REAL ENGINEER - FORMAL ESTIMATOR</small></h1>
+
+<div class="card"><h2>PROJECT INFO</h2>
+<label>Client Name</label><input id="client" placeholder="Client Name">
+<label>Project Location</label><input id="loc" placeholder="e.g. Abuja">
+<label>Project Title</label><input id="title" placeholder="e.g. 3 Bedroom Bungalow">
 </div>
-<div class="card" id="result" style="display:none">
-<h2>2. STANDARD BOQ - HEAVENSGATE</h2>
-<p id="pinfo"></p>
-<table>
-<tr><th>Item</th><th>Description</th><th>Amount (N)</th></tr>
-<tbody id="rows"></tbody>
-</table>
-<div class="total" id="grand"></div>
-<div class="split">
-<div><span>MATERIAL (60%)</span><br><b id="mat"></b></div>
-<div><span>LABOUR (40%)</span><br><b id="lab"></b></div>
+
+<div class="card"><h2>SUBSTRUCTURE</h2>
+<div class="row"><div><label>Excavation (m3)</label><input id="exc" type="number" value="40"></div><div><label>Pad Foundation (Nos)</label><input id="pad" type="number" value="12"></div></div>
+<div class="row"><div><label>Raft Thickness</label><select id="raft"><option>150mm</option><option>200mm</option></select></div><div><label>Laterite Filling (m3)</label><input id="lat" type="number" value="50"></div></div>
+<label>Foundation Column - 16mm (Nos)</label><input id="f16" type="number" value="12">
+<label>Ground Beam - 12mm (Nos)</label><input id="gb12" type="number" value="20">
+<label>Binding Wire (Roll)</label><input id="wire" type="number" value="2">
 </div>
-<div class="no-print">
-<button class="btn-yellow" onclick="window.print()">DOWNLOAD / PRINT BOQ PDF</button>
-<button class="btn-green" onclick="shareWhatsApp()">SHARE ON WHATSAPP</button>
-<button class="btn-dark" onclick="copyLink()">COPY APP LINK</button>
+
+<div class="card"><h2>BUILDING + STOREY</h2>
+<div class="row"><div><label>Length (m)</label><input id="len" type="number" value="12"></div><div><label>Width (m)</label><input id="wid" type="number" value="10"></div></div>
+<div class="row"><div><label>Bedrooms</label><input id="bed" type="number" value="3"></div><div><label>Storey</label><input id="storey" type="number" value="1"></div></div>
 </div>
-<small>HEAVENSGATE CONSTRUCTION - Created by Engr. Ogbole Ameh. Estimate only. Final BOQ after site inspection.</small>
+
+<div class="card"><h2>1. BLOCKWORK</h2>
+<div class="row"><div><label>9 inch Blocks (Nos)</label><input id="b9" type="number" value="1800"></div><div><label>6 inch Blocks (Nos)</label><input id="b6" type="number" value="1200"></div></div>
+<div class="row"><div><label>Cement for Blockwork (Bags)</label><input id="bCem" type="number" value="90"></div><div><label>Sand (Tons)</label><input id="bSand" type="number" value="12"></div></div>
 </div>
+
+<div class="card"><h2>2. REINFORCEMENT</h2>
+<div class="row"><div><label>16mm (Nos)</label><input id="r16" type="number" value="80"></div><div><label>12mm (Nos)</label><input id="r12" type="number" value="100"></div></div>
+<div class="row"><div><label>Binding Wire (Roll)</label><input id="rWire" type="number" value="3"></div><div><label>12mm Stirrups (Nos)</label><input id="rStir" type="number" value="200"></div></div>
 </div>
-<footer>HEAVENSGATE CONSTRUCTION<br>Created by Engr. Ogbole Ameh</footer>
+
+<div class="card"><h2>3. CONCRETE + 4. FORMWORK</h2>
+<div class="row"><div><label>Concrete C25 (m3)</label><input id="conc" type="number" value="25"></div><div><label>Formwork Boards (Nos)</label><input id="form" type="number" value="40"></div></div>
+<label>Nails (Bags)</label><input id="nails" type="number" value="5">
+</div>
+
+<div class="card"><h2>5. ROOFING</h2>
+<label>Roof Type</label><select id="roofType"><option>Hip Roof</option><option>Gable Roof</option></select>
+<div class="row"><div><label>Pitch (deg)</label><input id="pitch" type="number" value="30"></div><div><label>Roof Area (sqm)</label><input id="roofArea" type="number" value="180"></div></div>
+<label>Covering</label><select id="cover"><option>Aluminium Long Span</option><option>Stone Coated</option></select>
+<div class="row"><div><label>Truss Spacing (m)</label><input id="truss" type="number" value="1.2"></div><div><label>Timber</label><select id="timber"><option>2x4</option><option>2x6</option></select></div></div>
+<label>Nails</label><select id="roofNails"><option>Auto</option><option>Manual</option></select>
+</div>
+
+<div class="card"><h2>6. ELECTRICAL</h2>
+<div class="row"><div><label>Light Points</label><input id="light" type="number" value="25"></div><div><label>Sockets</label><input id="sock" type="number" value="20"></div></div>
+<div class="row"><div><label>Switches</label><input id="sw" type="number" value="20"></div><div><label>AC Points</label><input id="ac" type="number" value="4"></div></div>
+<div class="row"><div><label>Heater Points</label><input id="heat" type="number" value="3"></div><div><label>Fan Points</label><input id="fan" type="number" value="5"></div></div>
+<div class="row"><div><label>Conduit (m)</label><input id="conduit" type="number" value="40"></div><div><label>Earthing Lot</label><input id="earth" type="number" value="1"></div></div>
+<label>Generator / Inverter?</label><select id="gen"><option>No</option><option>Yes</option></select>
+</div>
+
+<div class="card"><h2>7. PLUMBING</h2>
+<div class="row"><div><label>WC</label><input id="wc" type="number" value="3"></div><div><label>Basin</label><input id="basin" type="number" value="3"></div></div>
+<div class="row"><div><label>Shower</label><input id="shower" type="number" value="3"></div><div><label>Kitchen Sink</label><input id="sink" type="number" value="1"></div></div>
+<div class="row"><div><label>Bath Tub</label><input id="bath" type="number" value="0"></div><div><label>Floor Drain</label><input id="drain" type="number" value="4"></div></div>
+<div class="row"><div><label>PPR Length (m)</label><input id="ppr" type="number" value="120"></div><div><label>PVC Length (m)</label><input id="pvc" type="number" value="100"></div></div>
+<div class="row"><div><label>Overhead Tank Nos</label><input id="tankN" type="number" value="2"></div><div><label>Tank Cap</label><select id="tankCap"><option>1000L</option><option>2000L</option></select></div></div>
+<div class="row"><div><label>Septic</label><select id="septic"><option>Small</option><option>Medium</option><option>Large</option></select></div><div><label>Borehole Depth (m)</label><input id="bore" type="number" value="60"></div></div>
+</div>
+
+<div class="card"><h2>8. PLASTERING</h2>
+<label>Thickness</label><select id="plThick"><option>12mm Internal</option><option>15mm External</option></select>
+<label>Mix</label><select id="plMix"><option>1:6</option><option>1:4</option></select>
+</div>
+
+<div class="card"><h2>9. POP</h2>
+<label>Type</label><select id="popType"><option>POP Plain</option><option>POP Design</option></select>
+<div class="row"><div><label>POP Area (sqm)</label><input id="popArea" type="number" value="110"></div><div><label>Cornice Length (m)</label><input id="cornice" type="number" value="80"></div></div>
+</div>
+
+<div class="card"><h2>10. TILLING + 11. SCREEDING</h2>
+<label>Tile Type</label><select id="tileType"><option>Vitrified 60x60</option><option>Ceramic 40x40</option></select>
+<div class="row"><div><label>Floor Tile Area (sqm)</label><input id="tileF" type="number" value="100"></div><div><label>Wall Tile Area (sqm)</label><input id="tileW" type="number" value="40"></div></div>
+<div class="row"><div><label>Tile Per Carton (sqm)</label><input id="tilePer" type="number" value="1.44"></div><div><label>Skirting (m)</label><input id="skirt" type="number" value="80"></div></div>
+<label>Screed Thickness</label><select id="screedTh"><option>25mm</option><option>50mm</option></select>
+<div class="row"><div><label>Screed Area (sqm)</label><input id="screedA" type="number" value="120"></div><div><label>Screed Mix</label><select id="screedMix"><option>1:4</option><option>1:6</option></select></div></div>
+</div>
+
+<div class="card"><h2>13. PAINTING</h2>
+<label>Paint Type</label><select id="paintType"><option>Emulsion</option><option>Texture</option><option>Gloss</option></select>
+<div class="row"><div><label>Paint Area (sqm) Blank=Auto</label><input id="paintArea" placeholder="Auto"></div><div><label>Coats</label><select id="coats"><option>2 Coats</option><option>3 Coats</option></select></div></div>
+</div>
+
+<div class="card"><h2>14. WINDOWS + 15. DOORS</h2>
+<label>Window Type</label><select id="winType"><option>Aluminium Sliding</option><option>Casement</option></select>
+<label>Window Nos</label><input id="winN" type="number" value="10">
+<div class="row"><div><label>Main Door Nos</label><input id="doorMainN" type="number" value="1"></div><div><label>Internal Doors</label><input id="doorIntN" type="number" value="7"></div></div>
+<div class="row"><div><label>Main Door Type</label><select id="doorMainT"><option>Steel Security</option><option>Wooden</option></select></div><div><label>Internal Door Type</label><select id="doorIntT"><option>Flush</option><option>Panel</option></select></div></div>
+</div>
+
+<div class="card"><h2>16. WARDROBE</h2>
+<label>Type</label><select id="wardType"><option>Built-In</option><option>Standing</option></select>
+<div class="row"><div><label>No of Wardrobes</label><input id="wardN" type="number" value="3"></div><div><label>Length Per One (m)</label><input id="wardL" type="number" value="2.4"></div></div>
+<div class="row"><div><label>Height (m)</label><input id="wardH" type="number" value="2.4"></div><div><label>Depth (m)</label><input id="wardD" type="number" value="0.6"></div></div>
+</div>
+
+<div class="card"><h2>17. STAIRCASE RAILINGS + 18. BURGLARY</h2>
+<label>Railing Type</label><select id="railType"><option>Mild Steel</option><option>Stainless</option></select>
+<div class="row"><div><label>Railing Length (m) Blank=Auto</label><input id="railL" placeholder="Auto"></div><div><label>Balcony Length (m)</label><input id="balc" type="number" value="10"></div></div>
+<label>Burglary Type</label><select id="burgType"><option>Mild Steel</option><option>Aluminium</option></select>
+<div class="row"><div><label>Burglary Windows</label><input id="burgW" type="number" value="10"></div><div><label>Burglary Doors</label><input id="burgD" type="number" value="1"></div></div>
+</div>
+
+<div class="card"><h2>19. FINISHING</h2>
+<div class="row"><div><label>Fence Length (m)</label><input id="fence" type="number" value="80"></div><div><label>Interlocking (sqm)</label><input id="inter" type="number" value="60"></div></div>
+<div class="row"><div><label>Gate Type</label><select id="gateT"><option>Sliding</option><option>Swing</option></select></div><div><label>Gate Size (m)</label><input id="gateS" type="number" value="4"></div></div>
+<div class="row"><div><label>Drainage Length (m)</label><input id="drainL" type="number" value="40"></div><div><label>Soakaway Nos</label><input id="soak" type="number" value="1"></div></div>
+<label>Other Finishing</label><select id="otherFin"><option>None</option><option>Landscaping</option></select>
+</div>
+
+<div class="card"><h2>💰 Rates (₦)</h2>
+<div class="row"><div><label>Cement / Bag</label><input id="rateCem" type="number" value="10500"></div><div><label>Sand / Ton</label><input id="rateSand" type="number" value="4500"></div></div>
+<div class="row"><div><label>Gravel / Ton</label><input id="rateGrav" type="number" value="12000"></div><div><label>Stone Dust / Ton</label><input id="rateDust" type="number" value="6000"></div></div>
+<div class="row"><div><label>Steel / Ton</label><input id="rateSteel" type="number" value="850000"></div><div><label>Block / Pc</label><input id="rateBlock" type="number" value="850"></div></div>
+<div class="row"><div><label>Tile / Carton</label><input id="rateTile" type="number" value="8500"></div><div><label>Paint / Bucket</label><input id="ratePaint" type="number" value="45000"></div></div>
+<div class="row"><div><label>POP Bag</label><input id="ratePOP" type="number" value="12000"></div><div><label>Labour %</label><input id="rateLab" type="number" value="30"></div></div>
+</div>
+
+<button class="btn1" onclick="calculate()">CALCULATE</button>
+<button class="btn2" onclick="generateBOQ()" id="genBtn" style="display:none">GENERATE STANDARD BOQ - FOR EVERYBODY</button>
+<div id="summary"></div><div id="out"></div>
+<button class="btn3" onclick="window.print()" id="printBtn" style="display:none">📄 DOWNLOAD / PRINT BOQ PDF</button>
+<button class="btn3" onclick="shareWA()" id="shareBtn" style="display:none;background:#25D366">📲 SHARE TO WHATSAPP</button>
+
 <script>
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
-function installApp(){if(deferredPrompt){deferredPrompt.prompt()}else{alert("To Install: Tap Share / menu -> Add to Home Screen -> Install")}}
-function fmt(n){return "N"+Math.round(n).toLocaleString()}
-function calc(){
-let area=+document.getElementById('area').value||150;
-let rate=+document.getElementById('rate').value;
-let mult=+document.getElementById('type').value;
-let total=area*rate*mult;
-let items=[
-["A","Preliminaries & Site Clearing",total*0.03],
-["B","Foundation / Substructure",total*0.15],
-["C","Blockwork / Superstructure",total*0.18],
-["D","Roofing & Carpentry",total*0.14],
-["E","Plastering & Screeding",total*0.08],
-["F","Electrical Installation",total*0.08],
-["G","Plumbing & Sanitary",total*0.08],
-["H","Windows, Doors & Ironmongery",total*0.08],
-["I","Tiling, POP & Painting",total*0.10],
-["J","External Works & Contingency",total*0.08]
-];
-let h="";items.forEach(i=>{h+=`<tr><td>${i[0]}</td><td>${i[1]}</td><td>${fmt(i[2])}</td></tr>`});
-document.getElementById('rows').innerHTML=h;
-document.getElementById('grand').innerText="GRAND TOTAL: "+fmt(total);
-document.getElementById('mat').innerText=fmt(total*0.6);
-document.getElementById('lab').innerText=fmt(total*0.4);
-document.getElementById('pinfo').innerHTML="<b>Client:</b> "+(document.getElementById('client').value||"-")+" | <b>Location:</b> "+(document.getElementById('loc').value||"-")+" | <b>Area:</b> "+area+" sqm";
-document.getElementById('result').style.display='block';
-document.getElementById('result').scrollIntoView({behavior:'smooth'});
+let LAST_GRAND=0;
+function v(id){return +document.getElementById(id).value||0}
+function fmt(n){return "₦"+Math.ceil(n).toLocaleString()}
+function calculate(){
+ let area=v('len')*v('wid')*v('storey');
+ let sub = v('exc')*4500 + v('pad')*25000 + v('lat')*6500;
+ let sup = (v('b9')+v('b6'))*v('rateBlock') + v('bCem')*v('rateCem') + v('conc')*85000 + (v('r16')+v('r12'))*8500;
+ let roof = v('roofArea')*9500 + v('roofArea')*2500;
+ let elect = v('light')*8500 + v('sock')*9500 + v('sw')*4500 + v('ac')*35000;
+ let plumb = v('wc')*85000 + v('basin')*45000 + v('shower')*55000 + v('sink')*65000 + v('ppr')*1800 + v('pvc')*1500 + v('tankN')*45000 + v('bore')*18000;
+ let plaster = area*2.5*3500;
+ let pop = v('popArea')*8500 + v('cornice')*2500;
+ let tile = (v('tileF')+v('tileW'))*12000 + v('screedA')*2800;
+ let paint = (v('paintArea')||area*2.5)*2500;
+ let windoor = v('winN')*95000 + v('doorMainN')*280000 + v('doorIntN')*85000;
+ let ward = v('wardN')*v('wardL')*185000;
+ let rail = (v('railL')||20)*45000 + v('balc')*45000 + v('burgW')*35000 + v('burgD')*45000;
+ let fin = v('fence')*28000 + v('inter')*9500 + v('gateS')*180000 + v('drainL')*12000 + v('soak')*350000;
+ let mat = sub+sup+roof+elect+plumb+plaster+pop+tile+paint+windoor+ward+rail+fin;
+ let lab = mat*v('rateLab')/100;
+ let cont = mat*0.10, vat=(mat+lab)*0.075, grand=mat+lab+cont+vat;
+ LAST_GRAND=grand;
+ document.getElementById('summary').innerHTML=`<div class="card"><h2>ESTIMATE SUMMARY</h2><p>Area: <b>${area} sqm</b></p><p>Materials: <b>${fmt(mat)}</b></p><p>Labour (${v('rateLab')}%): <b>${fmt(lab)}</b></p><h3>Grand Total: ${fmt(grand)}</h3></div>`;
+ document.getElementById('genBtn').style.display='block';
+ window.scrollTo(0,document.body.scrollHeight);
 }
-function shareWhatsApp(){
-let t=document.getElementById('grand').innerText;
-window.open("https://wa.me/?text="+encodeURIComponent("HEAVENSGATE CONSTRUCTION - Created by Engr. Ogbole Ameh | "+t+" | https://ogboleameh00.github.io/real-engineer/"));
+function generateBOQ(){
+ if(!LAST_GRAND) calculate();
+ let area=v('len')*v('wid')*v('storey'), client=document.getElementById('client').value||'Client', loc=document.getElementById('loc').value||'';
+ let items=[
+  ['B - SUBSTRUCTURE','', '',0,0],['Excavation for Foundation',v('exc'),'m3',4500],['Pad Foundation',v('pad'),'Nos',25000],['Laterite Filling',v('lat'),'m3',6500],
+  ['C - SUPERSTRUCTURE','', '',0,0],['Blockwork 9 inch Blocks',v('b9'),'Nos',v('rateBlock')],['Blockwork 6 inch Blocks',v('b6'),'Nos',v('rateBlock')],['Cement for Blockwork',v('bCem'),'Bags',v('rateCem')],['Concrete C25',v('conc'),'m3',85000],['Reinforcement 16mm',v('r16'),'Nos',8500],['Reinforcement 12mm',v('r12'),'Nos',8500],['Formwork Boards',v('form'),'Nos',12000],
+  ['D - ROOFING','', '',0,0],['Roofing - '+document.getElementById('cover').value,v('roofArea'),'sqm',9500],['Roof Timber + Nails',v('roofArea'),'sqm',2500],
+  ['E - ELECTRICAL','', '',0,0],['Light Points',v('light'),'Nos',8500],['Sockets',v('sock'),'Nos',9500],['Switches',v('sw'),'Nos',4500],['AC Points',v('ac'),'Nos',35000],
+  ['F - PLUMBING','', '',0,0],['WC',v('wc'),'Nos',85000],['Basin',v('basin'),'Nos',45000],['Shower',v('shower'),'Nos',55000],['PPR Pipes',v('ppr'),'m',1800],['PVC Pipes',v('pvc'),'m',1500],['Borehole',v('bore'),'m',18000],
+  ['G - FINISHES','', '',0,0],['Plastering',area*2.5,'sqm',3500],['POP',v('popArea'),'sqm',8500],['Tiling Floor+Wall',v('tileF')+v('tileW'),'sqm',12000],['Screeding',v('screedA'),'sqm',2800],['Painting',v('paintArea')||area*2.5,'sqm',2500],['Windows',v('winN'),'Nos',95000],['Doors - Main + Internal',v('doorMainN')+v('doorIntN'),'Nos',120000],['Wardrobe',v('wardN'),'Nos',v('wardL')*185000],['Railings + Burglary',v('burgW')+v('burgD'),'Nos',40000],
+  ['H - EXTERNAL WORKS','', '',0,0],['Fence',v('fence'),'m',28000],['Interlocking',v('inter'),'sqm',9500],['Gate',v('gateS'),'m',180000],['Drainage',v('drainL'),'m',12000],['Soakaway',v('soak'),'Nos',350000]
+ ];
+ let rows='', n=0, sub=0;
+ items.forEach(it=>{
+   if(it[1]===''){ rows+=`<tr class="section"><td colspan="6">${it[0]}</td></tr>`; }
+   else { n++; let amt=it[1]*it[3]; sub+=amt; rows+=`<tr><td class="center">${n}</td><td>${it[0]}</td><td class="right">${it[1].toLocaleString()}</td><td class="center">${it[2]}</td><td class="right">${fmt(it[3])}</td><td class="right">${fmt(amt)}</td></tr>`; }
+ });
+ let lab=sub*v('rateLab')/100, cont=sub*0.10, vat=(sub+lab)*0.075, grand=sub+lab+cont+vat; LAST_GRAND=grand;
+ let html=`<div class="card"><h2>STANDARD BILL OF QUANTITIES</h2><p><b>Client:</b> ${client}<br><b>Location:</b> ${loc}<br><b>Project:</b> ${document.getElementById('title').value||''} - ${area} sqm</p><table><tr><th>#</th><th>Description</th><th>Qty</th><th>Unit</th><th>Rate</th><th>Amount</th></tr>${rows}<tr class="total"><td colspan="5">TOTAL MATERIALS</td><td class="right">${fmt(sub)}</td></tr><tr class="total"><td colspan="5">TOTAL LABOUR (${v('rateLab')}%)</td><td class="right">${fmt(lab)}</td></tr><tr class="total"><td colspan="5">CONTINGENCY (10%)</td><td class="right">${fmt(cont)}</td></tr><tr class="total"><td colspan="5">VAT (7.5%)</td><td class="right">${fmt(vat)}</td></tr><tr class="total"><td colspan="5">GRAND TOTAL</td><td class="right">${fmt(grand)}</td></tr></table><p style="text-align:center;font-size:11px;color:#888">Generated by HEAVENSGATE - REAL ENGINEER</p></div>`;
+ document.getElementById('out').innerHTML=html;
+ document.getElementById('printBtn').style.display='block'; document.getElementById('shareBtn').style.display='block';
+ window.scrollTo(0,document.body.scrollHeight);
 }
-function copyLink(){
-navigator.clipboard.writeText("https://ogboleameh00.github.io/real-engineer/").then(()=>alert("Link copied!"));
-}
-</script>
-</body>
-</html>
+function shareWA(){ let t=`🏗️ HEAVENSGATE BOQ for ${document.getElementById('client').value||'Client'} - Grand Total: ${fmt(LAST_GRAND)}`; window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank'); }
+</script></body></html>
