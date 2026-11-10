@@ -236,4 +236,34 @@ alert('Wrong code. Pay ₦5,000 to Opay 7035780518, then send receipt to WhatsAp
 }
 }  
 function shareWA(){ let t=`🏗️ HEAVENSGATE BOQ for ${document.getElementById('client').value||'Client'} - Grand Total: ${fmt(LAST_GRAND)}`; window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank'); }</script>
-<div style="text-align:center; padding:15px; font-size:12px; color:#fff;">Created by Engr. Ameh Ogbole</div></body></html>
+<div style="text-align:center; padding:15px; font-size:12px; color:#fff;">Created by Engr. Ameh Ogbole</div><script>
+let oldGen = generateBOQ;
+generateBOQ = function(){
+oldGen();
+if(localStorage.getItem('hg_paid')==='YES'){
+document.getElementById('payBox').style.display='none';
+document.getElementById('downBox').style.display='block';
+}
+setTimeout(function(){
+document.getElementById('out').scrollIntoView({behavior:'smooth'});
+},300);
+}
+let oldCalc = calculate;
+calculate = function(){
+oldCalc();
+setTimeout(function(){
+document.getElementById('summary').scrollIntoView({behavior:'smooth'});
+},300);
+}
+unlock = function(){
+let raw = prompt('Enter Unlock Code:');
+if(!raw) return;
+let code = raw.trim().toUpperCase();
+if(code==='AMEH-2026' || code==='NICOLE-2026'){
+localStorage.setItem('hg_paid','YES');
+alert('Unlocked! Press GENERATE BOQ again.');
+document.getElementById('payBox').style.display='none';
+document.getElementById('downBox').style.display='block';
+}else{ alert('Wrong code.'); }
+}
+</script></body></html>
