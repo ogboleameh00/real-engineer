@@ -6,7 +6,6 @@ body{font-family:Arial;padding:0;margin:0;background:#f1f5f9}
 .header{background:linear-gradient(135deg,#0b4a9e,#1565c0);color:#fff;padding:22px 16px;border-radius:0 0 24px 24px}
 .logo{display:flex;align-items:center;gap:10px}.logoIcon{width:56px;height:56px;background:#f59e0b;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:32px}
 .logo b{font-size:26px}.logo small{color:#fbbf24;font-weight:700}
-/* COVER PAGE */
 .cover{background:linear-gradient(160deg,#0b2a5e 0%,#0b4a9e 55%,#1565c0 100%);color:#fff;border-radius:20px;padding:28px 18px;margin:12px;text-align:center;position:relative;overflow:hidden}
 .cover:before{content:"🏠";position:absolute;right:-10px;top:-20px;font-size:140px;opacity:0.12}
 .cover .pill{display:inline-block;background:#f59e0b;color:#111;padding:6px 14px;border-radius:20px;font-weight:900;font-size:12px}
@@ -31,7 +30,6 @@ table{width:100%;border-collapse:collapse;font-size:12px} th{background:#0b4a9e;
 
 <div class="header noPrint"><div class="logo"><div class="logoIcon">🏠</div><div><b>HEAVENSGATE</b><br><small>🧮 HEAVENSGATE Calculator</small></div></div><h2>BOQ CALCULATOR</h2><p>Standard Bill of Quantities in 2 Minutes</p></div>
 
-<!-- ===== FINE COVER PAGE ===== -->
 <div class="cover" id="coverPage">
 <span class="pill">✦ HEAVENSGATE CONSTRUCTION ✦</span>
 <h1>HEAVENSGATE<br><span>REAL ENGINEER</span></h1>
@@ -163,7 +161,7 @@ table{width:100%;border-collapse:collapse;font-size:12px} th{background:#0b4a9e;
 </div>
 
 <div class="card noPrint"><button class="btn1" onclick="calculate()">🧮 CALCULATE</button><button class="btn2" onclick="generateBOQ()" id="genBtn" style="display:none">📄 GENERATE STANDARD BOQ</button><div id="summary"></div><div id="out"></div></div>
-<div class="payBox noPrint" id="payBox" style="display:none"><h3>🔒 Pay N5,000 to Unlock Download</h3><button class="btn2" onclick="unlock()">I HAVE PAID N5,000 - UNLOCK DOWNLOAD</button></div>
+<div class="payBox noPrint" id="payBox" style="display:none"><h3>🔒 Pay N5,000 to Unlock Download</h3><div style="background:#fff;padding:12px;border-radius:10px;text-align:left;font-size:14px;line-height:1.8;margin:10px 0"><b>Pay To:</b><br>Bank: <b>Opay</b><br>Account Number: <b style="font-size:18px;color:#0b4a9e">7035780518</b> <button onclick="copyAcct()" style="width:auto;padding:6px 12px;background:#0b4a9e;color:#fff;border:0;border-radius:6px;font-size:12px;margin:0">📋 COPY</button><br>Account Name: <b>Ameh Anebi Ogbole</b><br>Amount: <b>₦5,000</b></div><a href="https://wa.me/2347035780518?text=I%20don%20pay%20N5000%20for%20BOQ%2C%20abeg%20send%20me%20unlock%20code" target="_blank" style="display:block;background:#25D366;color:#fff;padding:14px;border-radius:10px;font-weight:900;text-decoration:none;margin:6px 0">📲 SEND RECEIPT TO WHATSAPP</a><label style="text-align:left">Enter Unlock Code (You go get am after you pay)</label><input id="unlockCode" placeholder="Enter code here e.g. NICOLE5000" style="text-align:center;font-weight:900;letter-spacing:1px"><button class="btn2" onclick="unlock()">🔓 UNLOCK DOWNLOAD WITH CODE</button><p style="font-size:12px;color:#666">No code? Pay first, send receipt to WhatsApp, Oga go send you code.</p></div>
 <div class="card noPrint" id="downBox" style="display:none"><button class="btn3" onclick="window.print()">📄 DOWNLOAD PDF - COVER PAGE + BOQ</button><button class="btn3" onclick="shareWA()" style="background:#25D366">📲 SHARE TO WHATSAPP</button></div>
 
 <script>
@@ -174,26 +172,23 @@ function updateCover(){ document.getElementById('cClient').innerText=document.ge
 updateCover();
 function showDrawing(e){let f=e.target.files[0]; if(!f) return; let r=new FileReader(); r.onload=function(){let im=document.getElementById('preview'); im.src=r.result; im.style.display='block';}; r.readAsDataURL(f);}
 function aiExtract(){ document.getElementById('aiMsg').innerText='🤖 AI don read your drawing! Confirm values then CALCULATE.'; alert('AI Extract Beta: Drawing uploaded! Confirm values then CALCULATE.'); }
+function copyAcct(){ navigator.clipboard.writeText('7035780518'); alert('Account Number Copied: 7035780518 - Opay - Ameh Anebi Ogbole'); }
 function calculate(){
  let area=v('len')*v('wid')*v('storey'); updateCover();
- let steel=v('y10')*v('rateY10')+v('y12')*v('rateY12')+v('y16')*v('rateY16')+v('y20')*v('rateY20')+v('y25')*v('rateY25')+v('y32')*v('rateY32')+v('y50')*v('rateY50')+v('rStir')*v('rateStir')+v('rWire')*v('rateWire')+v('yOther')*v('rateYOther');
- let sub=v('exc')*4500+v('pad')*25000+v('lat')*6500;
- let sup=(v('b9')+v('b6'))*v('rateBlock')+v('bCem')*v('rateCem')+v('bSand')*v('rateSand')+v('conc')*v('rateConc')+steel;
- let form=v('fw23')*v('rateFW23')+v('fw22')*v('rateFW22')+v('fw24')*v('rateFW24')+v('marine')*v('rateMarine')+v('nails')*v('rateNail')+v('form')*v('rateForm');
- let roof=v('roofArea')*v('rateRoof')+v('m23')*v('rate23')+v('m24')*v('rate24')+v('m26')*v('rate26')+v('roofNailQty')*8000;
- let elect=v('light')*v('rateLight')+v('sock')*v('rateSock')+v('sw')*v('rateSw')+v('ac')*v('rateAC')+v('heat')*v('rateHeat')+v('fan')*v('rateFan')+v('conduit')*v('rateConduit')+v('earth')*v('rateEarth')+v('elecMatCost');
- let plumb=v('wc')*v('rateWC')+v('basin')*v('rateBasin')+v('shower')*v('rateShower')+v('sink')*v('rateSink')+v('bath')*45000+v('drain')*8000+v('ppr')*v('ratePPR')+v('pvc')*v('ratePVC')+v('tankN')*v('rateTank')+v('bore')*v('rateBore')+v('plumbMatCost');
- let plaster=area*2.5*v('ratePlaster')+v('plCem')*v('rateCem')+v('plSand')*v('rateSand');
- let pop=v('popArea')*v('ratePOPsqm')+v('cornice')*2500;
- let tile=(v('tileF')+v('tileW'))*v('rateTileSqm')+v('screedA')*v('rateScreed');
- let paint=(v('paintArea')||area*2.5)*v('ratePaintSqm');
- let windoor=v('winN')*v('rateWindow')+v('doorMainN')*v('rateDoorMain')+v('doorIntN')*v('rateDoorInt');
- let ward=v('wardN')*v('wardL')*v('rateWard');
- let rail=(v('railL')||20)*v('rateRail')+v('balc')*v('rateRail')+v('burgW')*v('rateBurg')+v('burgD')*45000;
- let fin=v('fence')*28000+v('inter')*9500+v('gateS')*180000+v('drainL')*12000+v('soak')*350000;
- let mat=sub+sup+form+roof+elect+plumb+plaster+pop+tile+paint+windoor+ward+rail+fin;
- let lab=mat*v('rateLab')/100, cont=mat*0.10, vat=(mat+lab)*0.075, grand=mat+lab+cont+vat; LAST_GRAND=grand;
- document.getElementById('summary').innerHTML=`<div><h2 class="sec">ESTIMATE SUMMARY</h2><p>Area: <b>${area} sqm</b></p><p>Steel: <b>${fmt(steel)}</b> | Formwork: <b>${fmt(form)}</b></p><p>Materials: <b>${fmt(mat)}</b></p><p>Labour: <b>${fmt(lab)}</b></p><h3>Grand Total: ${fmt(grand)}</h3></div>`;
+ let sub=0;
+ let add=(q,r)=>{ sub+=q*r };
+ add(v('exc'),4500); add(v('pad'),25000); add(v('lat'),6500);
+ add(v('b9'),v('rateBlock')); add(v('b6'),v('rateBlock')); add(v('bCem'),v('rateCem')); add(v('bSand'),v('rateSand'));
+ add(v('y10'),v('rateY10')); add(v('y12'),v('rateY12')); add(v('y16'),v('rateY16')); add(v('y20'),v('rateY20')); add(v('y25'),v('rateY25')); add(v('y32'),v('rateY32')); add(v('y50'),v('rateY50')); add(v('rStir'),v('rateStir')); add(v('rWire'),v('rateWire')); add(v('yOther'),v('rateYOther'));
+ add(v('conc'),v('rateConc'));
+ add(v('fw23'),v('rateFW23')); add(v('fw22'),v('rateFW22')); add(v('fw24'),v('rateFW24')); add(v('marine'),v('rateMarine')); add(v('nails'),v('rateNail'));
+ add(v('roofArea'),v('rateRoof')); add(v('m23'),v('rate23')); add(v('m24'),v('rate24')); add(v('m26'),v('rate26'));
+ add(v('light'),v('rateLight')); add(v('sock'),v('rateSock')); add(v('sw'),v('rateSw')); add(v('ac'),v('rateAC')); add(v('heat'),v('rateHeat')); add(v('fan'),v('rateFan')); add(v('conduit'),v('rateConduit')); add(v('earth'),v('rateEarth')); add(1,v('elecMatCost'));
+ add(v('wc'),v('rateWC')); add(v('basin'),v('rateBasin')); add(v('shower'),v('rateShower')); add(v('sink'),v('rateSink')); add(v('ppr'),v('ratePPR')); add(v('pvc'),v('ratePVC')); add(v('tankN'),v('rateTank')); add(v('bore'),v('rateBore')); add(1,v('plumbMatCost'));
+ add(area*2.5,v('ratePlaster')); add(v('plCem'),v('rateCem')); add(v('plSand'),v('rateSand'));
+ add(v('popArea'),v('ratePOPsqm')); add(v('tileF')+v('tileW'),v('rateTileSqm')); add(v('screedA'),v('rateScreed')); add(v('paintArea')||area*2.5,v('ratePaintSqm')); add(v('winN'),v('rateWindow')); add(v('doorMainN'),v('rateDoorMain')); add(v('doorIntN'),v('rateDoorInt')); add(v('wardN'),v('wardL')*v('rateWard')); add(v('railL')||20,v('rateRail')); add(v('burgW'),v('rateBurg')); add(v('burgD'),45000); add(v('fence'),28000); add(v('inter'),9500); add(v('gateS'),180000); add(v('drainL'),12000); add(v('soak'),350000);
+ let lab=sub*v('rateLab')/100, cont=sub*0.10, vat=(sub+lab)*0.075, grand=sub+lab+cont+vat; LAST_GRAND=grand;
+ document.getElementById('summary').innerHTML=`<div><h2 class="sec">ESTIMATE SUMMARY</h2><p>Area: <b>${area} sqm</b></p><p>Materials: <b>${fmt(sub)}</b></p><p>Labour: <b>${fmt(lab)}</b></p><h3>Grand Total: ${fmt(grand)}</h3></div>`;
  document.getElementById('genBtn').style.display='block'; window.scrollTo(0,document.body.scrollHeight);
 }
 function generateBOQ(){
@@ -226,6 +221,6 @@ function generateBOQ(){
  let html=`<div><h2 class="sec">HEAVENSGATE CONSTRUCTION - STANDARD BILL OF QUANTITIES</h2><p><b>Client:</b> ${client}<br><b>Location:</b> ${loc}<br><b>Project:</b> ${document.getElementById('title').value||''} - ${area} sqm<br><b>Roof:</b> ${cover} - Truss ${v('truss')}m / Stone ${v('stoneSpacing')}m</p><table><tr><th>#</th><th>Description</th><th>Qty</th><th>Unit</th><th>Rate</th><th>Amount</th></tr>${rows}<tr class="total"><td colspan="5">TOTAL MATERIALS</td><td class="right">${fmt(sub)}</td></tr><tr class="total"><td colspan="5">TOTAL LABOUR (${v('rateLab')}%)</td><td class="right">${fmt(lab)}</td></tr><tr class="total"><td colspan="5">CONTINGENCY (10%)</td><td class="right">${fmt(cont)}</td></tr><tr class="total"><td colspan="5">VAT (7.5%)</td><td class="right">${fmt(vat)}</td></tr><tr class="total"><td colspan="5">GRAND TOTAL</td><td class="right">${fmt(grand)}</td></tr></table></div>`;
  document.getElementById('out').innerHTML=html; document.getElementById('payBox').style.display='block'; window.scrollTo(0,document.body.scrollHeight);
 }
-function unlock(){ document.getElementById('payBox').style.display='none'; document.getElementById('downBox').style.display='block'; alert('Unlocked!'); }
+function unlock(){ let c=document.getElementById('unlockCode').value.trim().toUpperCase(); if(c==='NICOLE5000'){ document.getElementById('payBox').style.display='none'; document.getElementById('downBox').style.display='block'; alert('✅ Code Correct! Download Unlocked!'); } else { alert('❌ Wrong Code! Pay N5,000 to Opay 7035780518, send receipt to WhatsApp, you go get correct code.'); } }
 function shareWA(){ let t=`🏗️ HEAVENSGATE BOQ for ${document.getElementById('client').value||'Client'} - Grand Total: ${fmt(LAST_GRAND)}`; window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank'); }
 </script></body></html>
