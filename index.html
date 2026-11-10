@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REAL ENGINEER - BOQ App</title>
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#0f172a;color:#fff;padding:12px}
+.header{background:#facc15;color:#000;padding:16px;border-radius:12px;text-align:center}
+.header h1{margin:0;font-size:22px}
+.header p{margin:4px 0 0;font-size:13px;font-weight:bold}
+.card{background:#1e293b;padding:14px;border-radius:12px;margin-top:12px}
+input,select{width:100%;padding:11px;border-radius:8px;border:none;margin:6px 0;font-size:15px}
+label{font-size:13px;color:#cbd5e1}
+button{padding:12px;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
+.btn-add{background:#22c55e;color:#fff;width:100%;margin-top:8px}
+.btn-del{background:#ef4444;color:#fff;padding:6px 10px}
+.btn-print{background:#facc15;color:#000;width:100%;margin-top:10px}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+th,td{padding:8px;border-bottom:1px solid #334155;text-align:left}
+th{background:#020617}
+.total{font-size:22px;font-weight:bold;text-align:right;margin-top:12px}
+.total span{color:#facc15}
+small{color:#94a3b8}
+.top{display:flex;gap:8px}
+.top input{flex:1}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>REAL ENGINEER</h1>
+<p>QS, BUILDERS & CONSTRUCTION WORKERS</p>
+<p>BOQ - BILL OF QUANTITIES</p>
+</div>
+
+<div class="card">
+<label>Project Name</label>
+<input id="project" placeholder="e.g. 4 Bedroom Duplex, Abuja">
+<label>Client Name</label>
+<input id="client" placeholder="e.g. Mr. Ogbole">
+<div class="top">
+<div><label>Location</label><input id="loc" placeholder="Abuja"></div>
+<div><label>Date</label><input type="date" id="date"></div>
+</div>
+</div>
+
+<div class="card">
+<label>Item Description</label>
+<input id="desc" placeholder="e.g. Cement, Blocks, Iron Rod">
+<label>Unit</label>
+<select id="unit"><option>Bag</option><option>Nos</option><option>m3</option><option>m2</option><option>kg</option><option>Ton</option><option>Trip</option><option>Length</option><option>Day</option><option>Lumpsum</option></select>
+<label>Quantity</label>
+<input id="qty" type="number" placeholder="0">
+<label>Rate (₦)</label>
+<input id="rate" type="number" placeholder="0">
+<button class="btn-add" onclick="addItem()">+ ADD TO BOQ</button>
+</div>
+
+<div class="card">
+<h3 style="margin:0">BOQ TABLE</h3>
+<small id="projShow"></small>
+<table>
+<thead><tr><th>#</th><th>Item</th><th>Qty</th><th>Rate</th><th>Amount</th><th></th></tr></thead>
+<tbody id="list"></tbody>
+</table>
+<div class="total">TOTAL: <span id="total">₦0</span></div>
+<button class="btn-print" onclick="window.print()">🖨️ PRINT / SAVE AS PDF</button>
+</div>
+
+<script>
+let items=[];
+function fmt(n){return "₦"+Number(n).toLocaleString()}
+function addItem(){
+let d=document.getElementById('desc').value;
+let u=document.getElementById('unit').value;
+let q=parseFloat(document.getElementById('qty').value)||0;
+let r=parseFloat(document.getElementById('rate').value)||0;
+if(!d||!q||!r){alert("Fill Description, Qty and Rate");return}
+items.push({d,u,q,r,amt:q*r});
+render();
+document.getElementById('desc').value="";document.getElementById('qty').value="";document.getElementById('rate').value="";
+}
+function del(i){items.splice(i,1);render()}
+function render(){
+let h="";let t=0;
+items.forEach((it,i)=>{t+=it.amt;h+=`<tr><td>${i+1}</td><td>${it.d}<br><small>${it.u}</small></td><td>${it.q}</td><td>${fmt(it.r)}</td><td>${fmt(it.amt)}</td><td><button class="btn-del" onclick="del(${i})">X</button></td></tr>`});
+document.getElementById('list').innerHTML=h||"<tr><td colspan=6 style='text-align:center'>No item yet</td></tr>";
+document.getElementById('total').innerText=fmt(t);
+let p=document.getElementById('project').value;let c=document.getElementById('client').value;
+document.getElementById('projShow').innerText=p?`${p} - ${c}`:"";
+}
+document.getElementById('date').value=new Date().toISOString().slice(0,10);
+render();
+</script>
+</body>
+</html>
