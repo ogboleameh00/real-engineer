@@ -1,97 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>REAL ENGINEER - BOQ App</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HEAVENGATE - Substructure + Superstructure</title>
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;background:#0f172a;color:#fff;padding:12px}
-.header{background:#facc15;color:#000;padding:16px;border-radius:12px;text-align:center}
-.header h1{margin:0;font-size:22px}
-.header p{margin:4px 0 0;font-size:13px;font-weight:bold}
-.card{background:#1e293b;padding:14px;border-radius:12px;margin-top:12px}
-input,select{width:100%;padding:11px;border-radius:8px;border:none;margin:6px 0;font-size:15px}
-label{font-size:13px;color:#cbd5e1}
-button{padding:12px;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
-.btn-add{background:#22c55e;color:#fff;width:100%;margin-top:8px}
-.btn-del{background:#ef4444;color:#fff;padding:6px 10px}
-.btn-print{background:#facc15;color:#000;width:100%;margin-top:10px}
-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
-th,td{padding:8px;border-bottom:1px solid #334155;text-align:left}
-th{background:#020617}
-.total{font-size:22px;font-weight:bold;text-align:right;margin-top:12px}
-.total span{color:#facc15}
-small{color:#94a3b8}
-.top{display:flex;gap:8px}
-.top input{flex:1}
+*{box-sizing:border-box;font-family:Arial,sans-serif}body{margin:0;background:#f1f5f9;color:#111;padding:10px}
+.top{text-align:center;background:#fff;padding:18px;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.top h1{margin:0;color:#2563eb;font-size:22px}.top p{margin:4px 0}h2{text-align:center;margin:18px 0 6px}
+.card{background:#fff;padding:14px;border-radius:14px;margin-top:12px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.card h3{text-align:center;margin:0 0 10px}.card h4{text-align:center;margin:16px 0 6px;font-size:17px}
+label{display:block;text-align:center;margin-top:12px;font-size:15px}input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #cbd5e1;margin-top:5px;font-size:15px;text-align:center}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+button{width:100%;padding:15px;background:#2563eb;color:#fff;font-weight:900;border:none;border-radius:10px;font-size:17px;margin-top:14px}
+.btn2{background:#16a34a}.btn3{background:#f59e0b;color:#000}.summary{background:#dbeafe;padding:14px;border-radius:12px;margin-top:12px;white-space:pre-line;line-height:1.7;font-weight:700;display:none;text-align:center}
+.boq{background:#fff;padding:0;border-radius:12px;margin-top:12px;display:none;overflow:hidden;border:1px solid #ddd}
+.boq-head{background:#0f172a;color:#fff;padding:18px;text-align:center}.boq-head h2{margin:0;color:#f59e0b}
+table{width:100%;border-collapse:collapse;font-size:12px}th{background:#0f172a;color:#fff;padding:8px;text-align:left}td{padding:7px;border-bottom:1px solid #e2e8f0}.section td{background:#fef3c7!important;font-weight:900}.total-row td{font-weight:900;background:#0f172a!important;color:#fff}.grand td{background:#f59e0b!important;color:#000}.right{text-align:right}.center{text-align:center}.sig{display:flex;justify-content:space-between;padding:16px;font-size:12px}.sig div{border-top:1px solid #000;padding-top:6px;width:40%;text-align:center}
+@media print{body{background:#fff}.no-print{display:none!important}.boq{display:block!important}}
 </style>
 </head>
 <body>
-<div class="header">
-<h1>REAL ENGINEER</h1>
-<p>QS, BUILDERS & CONSTRUCTION WORKERS</p>
-<p>BOQ - BILL OF QUANTITIES</p>
+<div class="no-print">
+<div class="top"><h1>🧱 HEAVENGATE CONSTRUCTION</h1><p>Blocks & Cement Estimator</p><p><b>Substructure (Yesterday) + Superstructure & Finishing (1 to 19) + BOQ</b></p></div>
+<div class="card"><h3>👤 Project Info</h3><div class="grid"><div><label>Client Name</label><input id="client" value="Mr. John Ade"></div><div><label>Location</label><input id="location" value="Abuja, FCT"></div></div><label>Project Title</label><input id="project" value="Proposed 3 Bedroom Bungalow"><label>Prepared By</label><input id="prepared" value="HEAVENGATE - Engr Ogbole Ameh"></div>
+
+<div class="card"><h2>SUBSTRUCTURE (FOUNDATION)</h2><h4>Excavation</h4>
+<label>Excavation Length (m)</label><input id="excL" type="number" placeholder="e.g. 20">
+<label>Excavation Width (m)</label><input id="excW" type="number" placeholder="e.g. 0.6">
+<label>Excavation Depth (m)</label><input id="excD" type="number" placeholder="e.g. 0.9">
+<h4>Concrete in Foundation</h4>
+<label>Concrete Length (m)</label><input id="concL" type="number" placeholder="e.g. 20">
+<label>Concrete Width (m)</label><input id="concW" type="number" placeholder="e.g. 0.6">
+<label>Concrete Thickness (m)</label><input id="concT" type="number" placeholder="e.g. 0.15">
+<h4>Pad Excavation</h4>
+<label>Number of Pads</label><input id="padNo" type="number" placeholder="e.g. 12">
+<label>Pad Length (m)</label><input id="padL" type="number" placeholder="e.g. 1.2">
+<label>Pad Width (m)</label><input id="padW" type="number" placeholder="e.g. 1.2">
+<label>Pad Depth (m)</label><input id="padD" type="number" placeholder="e.g. 1.2">
+<label>Pad Concrete Thickness (m)</label><input id="padCT" type="number" value="0.225">
+<h4>Raft Excavation</h4>
+<label>Raft Length (m)</label><input id="raftL" type="number" placeholder="e.g. 12">
+<label>Raft Width (m)</label><input id="raftW" type="number" placeholder="e.g. 10">
+<label>Raft Depth (m)</label><input id="raftD" type="number" placeholder="e.g. 0.6">
+<h4>Laterite Filling</h4>
+<label>Laterite Length (m)</label><input id="latL" type="number" placeholder="e.g. 10">
+<label>Laterite Width (m)</label><input id="latW" type="number" placeholder="e.g. 8">
+<label>Laterite Thickness (m)</label><input id="latT" type="number" value="0.3">
+<p style="text-align:center;color:#64748b;font-size:13px">Hardcore (Boulders) 0.30m — Uses same Length x Width x 0.30<br>DPC Slab 0.05m — Uses same Length x Width x 0.05</p>
+<h4>Foundation Block Work</h4>
+<label>Foundation Wall Length (m)</label><input id="foundWallL" type="number" placeholder="e.g. 50">
+<label>Foundation Height (m)</label><input id="foundWallH" type="number" value="0.9">
+<label>Foundation Block Size</label><select id="foundBlockSize"><option value="9">9 Inch Block</option><option value="6">6 Inch Block</option></select>
+<h4>🔩 Foundation Column Reinforcement</h4>
+<label>No. of Columns</label><input id="foundCols" type="number" value="20">
+<label>Column Main Bar</label><select id="foundColBar"><option value="16">Y16 - 1.58 Kg/m</option><option value="12">Y12 - 0.89 Kg/m</option><option value="20">Y20 - 2.47 Kg/m</option></select>
+<label>No. of Bars per Column</label><select id="foundColNo"><option value="4">4 Bars</option><option value="6">6 Bars</option><option value="8">8 Bars</option></select>
+<label>Column Height (m)</label><input id="foundColH" type="number" value="1.5">
+<h4>🔩 Ground Beam / Foundation Beam</h4>
+<label>Total Beam Length (m)</label><input id="groundBeamL" type="number" placeholder="e.g. 80">
+<label>Beam Main Bar</label><select id="groundBeamBar"><option value="16">Y16 - 1.58 Kg/m</option><option value="12">Y12 - 0.89 Kg/m</option></select>
+<label>Total Main Bars (Top + Bottom)</label><select id="groundBeamNo"><option value="8">8 Bars (4 Top + 4 Bottom)</option><option value="6">6 Bars</option><option value="4">4 Bars</option></select>
+<label>Stirrup / Link Bar</label><select id="groundStirrup"><option value="10">Y10 - 0.617 Kg/m</option><option value="8">Y8 - 0.395 Kg/m</option><option value="12">Y12 - 0.89 Kg/m</option></select>
+<label>Stirrup Spacing (mm)</label><input id="stirSpace" type="number" value="150">
+<label>German Floor Thickness (m)</label><input id="germanT" type="number" value="0.1">
 </div>
 
-<div class="card">
-<label>Project Name</label>
-<input id="project" placeholder="e.g. 4 Bedroom Duplex, Abuja">
-<label>Client Name</label>
-<input id="client" placeholder="e.g. Mr. Ogbole">
-<div class="top">
-<div><label>Location</label><input id="loc" placeholder="Abuja"></div>
-<div><label>Date</label><input type="date" id="date"></div>
-</div>
-</div>
+<div class="card"><h3>📐 Building + STOREY</h3>
+<div class="grid"><div><label>Length (m)</label><input id="length" type="number" value="12"></div><div><label>Width (m)</label><input id="width" type="number" value="10"></div></div>
+<label>How Many Storey?</label><select id="storey"><option value="1">1 - Bungalow</option><option value="2">2 - Ground + 1</option><option value="3">3 - Ground + 2</option><option value="4">4 - Ground + 3</option></select>
+<div class="grid"><div><label>Bedrooms</label><input id="bed" type="number" value="3"></div><div><label>Toilets</label><input id="toilet" type="number" value="3"></div></div>
+<div class="grid"><div><label>Wall Height Per Floor (m)</label><input id="wallH" type="number" value="3"></div><div><label>Internal Wall Length (m)</label><input id="internalWall" type="number" value="30"></div></div>
+<div class="grid"><div><label>Total Doors</label><input id="doors" type="number" value="8"></div><div><label>Total Windows</label><input id="windows" type="number" value="10"></div></div></div>
 
-<div class="card">
-<label>Item Description</label>
-<input id="desc" placeholder="e.g. Cement, Blocks, Iron Rod">
-<label>Unit</label>
-<select id="unit"><option>Bag</option><option>Nos</option><option>m3</option><option>m2</option><option>kg</option><option>Ton</option><option>Trip</option><option>Length</option><option>Day</option><option>Lumpsum</option></select>
-<label>Quantity</label>
-<input id="qty" type="number" placeholder="0">
-<label>Rate (₦)</label>
-<input id="rate" type="number" placeholder="0">
-<button class="btn-add" onclick="addItem()">+ ADD TO BOQ</button>
+<div class="card"><h3>1. BLOCKWORK</h3><label>Block Size</label><select id="blockType"><option value="9">9 Inch (225mm)</option><option value="6">6 Inch (150mm)</option></select><label>Wastage %</label><input id="blockWaste" type="number" value="5"><label>Mortar Ratio</label><select id="mortarRatio"><option value="1:6">1:6 - Standard</option><option value="1:4">1:4 - Strong</option></select></div>
+<div class="card"><h3>2. REINFORCEMENT - Superstructure</h3><label>Column Main Bars (Super)</label><select id="colBars"><option value="4x16">4 x 16mm</option><option value="6x16">6 x 16mm</option><option value="4x20">4 x 20mm</option></select><label>Beam Main Bars</label><select id="beamBars"><option value="4x16">4 x 16mm</option><option value="6x16">6 x 16mm</option></select><label>Slab Bars</label><select id="slabBars"><option value="12@150">12mm @ 150mm</option><option value="12@200">12mm @ 200mm</option><option value="10@150">10mm @ 150mm</option></select><div class="grid"><div><label>Slab Thickness (m)</label><input id="slabT" type="number" value="0.15"></div><div><label>Slab Area Per Floor (sqm)</label><input id="slabArea" type="number" value="120"></div></div><label>Slab Type</label><select id="slabType"><option value="solid">Solid Slab</option><option value="ribbed">Ribbed / Waffle</option><option value="flat">Flat Slab</option><option value="hollow">Hollow Core</option></select><label>Staircase Type</label><select id="stairType"><option value="none">No Staircase</option><option value="straight">Straight</option><option value="lshape">L-Shaped</option><option value="ushape">U-Shaped</option><option value="spiral">Spiral</option><option value="threeflight">Three Flight</option></select><div class="grid"><div><label>No of Steps</label><input id="steps" type="number" value="18"></div><div><label>Stair Width (m)</label><input id="stairW" type="number" value="1"></div></div><div class="grid"><div><label>Riser (m)</label><input id="riser" type="number" value="0.15"></div><div><label>Going (m)</label><input id="going" type="number" value="0.25"></div></div></div>
+<div class="card"><h3>3. CONCRETE + 4. FORMWORK</h3><label>Concrete Mix</label><select id="mix"><option value="1:2:4">1:2:4 - M20</option><option value="1:1.5:3">1:1.5:3 - M25</option><option value="1:3:6">1:3:6 - Mass</option></select><div class="grid"><div><label>Column Size (m)</label><input id="colSize" type="number" value="0.225"></div><div><label>Beam Length Per Floor (m)</label><input id="beamLen" type="number" value="44"></div></div><label>Formwork - Type L, B, T (Blank = Auto)</label><div class="grid3"><div><input id="fwColL" type="number" placeholder="Col L"></div><div><input id="fwBeamL" type="number" placeholder="Beam L"></div><div><input id="fwSlabL" type="number" placeholder="Slab L"></div></div><div class="grid3"><div><input id="fwColB" type="number" placeholder="Col B"></div><div><input id="fwBeamB" type="number" placeholder="Beam B"></div><div><input id="fwSlabB" type="number" placeholder="Slab B"></div></div><div class="grid3"><div><input id="fwColH" type="number" placeholder="Col H"></div><div><input id="fwBeamD" type="number" placeholder="Beam D"></div><div><input id="fwSlabT" type="number" placeholder="Slab T"></div></div><label>Board Type</label><select id="boardType"><option value="plank">Marine Plank</option><option value="plywood">Plywood</option><option value="steel">Steel Formwork</option></select></div>
+<div class="card"><h3>5. ROOFING</h3><label>Roof Type</label><select id="roofType"><option value="hip">Hip Roof</option><option value="gable">Gable Roof</option><option value="flat">Flat Roof</option><option value="mono">Mono Pitch</option><option value="mansard">Mansard</option><option value="pyramid">Pyramid</option><option value="butterfly">Butterfly</option></select><div class="grid"><div><label>Pitch (°)</label><input id="pitch" type="number" value="30"></div><div><label>Roof Area (sqm)</label><input id="roofArea" type="number" value="180"></div></div><label>Covering</label><select id="covering"><option value="aluminium">Aluminium Long Span</option><option value="stone">Stone Coated Tile</option><option value="zinc">Corrugated Zinc</option><option value="shingle">Shingle</option><option value="metcoppo">Metcoppo</option></select><div class="grid"><div><label>Truss Spacing (m)</label><input id="trussSpace" type="number" value="1.2"></div><div><label>Timber</label><select id="timber"><option value="2x4">2x4</option><option value="2x3">2x3</option><option value="steel">Steel Truss</option></select></div></div><label>Nails</label><select id="nailType"><option value="auto">Auto</option><option value="manual">Manual</option></select><input id="nailsManual" type="number" placeholder="If manual, type total nails"></div>
+<div class="card"><h3>6. ELECTRICAL</h3><div class="grid"><div><label>Light Points</label><input id="lightPts" type="number" value="25"></div><div><label>Sockets</label><input id="socketPts" type="number" value="20"></div></div><div class="grid"><div><label>Switches</label><input id="switches" type="number" value="20"></div><div><label>AC Points</label><input id="acPts" type="number" value="4"></div></div><div class="grid"><div><label>Heater Points</label><input id="heaterPts" type="number" value="3"></div><div><label>Fan Points</label><input id="fanPts" type="number" value="5"></div></div><div class="grid"><div><label>DB</label><input id="dbNo" type="number" value="1"></div><div><label>Cable Length (m)</label><input id="cableLen" type="number" value="400"></div></div><div class="grid"><div><label>Conduit</label><input id="conduitNo" type="number" value="40"></div><div><label>Earthing Lot</label><input id="earthing" type="number" value="1"></div></div><label>Generator / Inverter?</label><select id="genPoint"><option value="no">No</option><option value="yes">Yes</option></select></div>
+<div class="card"><h3>7. PLUMBING</h3><div class="grid"><div><label>WC</label><input id="wcNo" type="number" value="3"></div><div><label>Basin</label><input id="basinNo" type="number" value="3"></div></div><div class="grid"><div><label>Shower</label><input id="showerNo" type="number" value="3"></div><div><label>Kitchen Sink</label><input id="sinkNo" type="number" value="1"></div></div><div class="grid"><div><label>Bath Tub</label><input id="bathNo" type="number" value="0"></div><div><label>Floor Drain</label><input id="drainNo" type="number" value="4"></div></div><div class="grid"><div><label>PPR Length (m)</label><input id="pprLen" type="number" value="120"></div><div><label>PVC Length (m)</label><input id="pvcLen" type="number" value="100"></div></div><div class="grid"><div><label>Overhead Tank Nos</label><input id="tankNo" type="number" value="2"></div><div><label>Tank Cap</label><select id="tankCap"><option value="1000">1000L</option><option value="2000">2000L</option><option value="3000">3000L</option></select></div></div><div class="grid"><div><label>Septic</label><select id="septic"><option value="small">Small</option><option value="medium">Medium</option><option value="large">Large</option></select></div><div><label>Borehole Depth (m)</label><input id="boreDepth" type="number" value="60"></div></div></div>
+<div class="card"><h3>8. PLASTERING</h3><label>Thickness</label><select id="plasterT"><option value="0.012">12mm Internal</option><option value="0.015">15mm External</option><option value="0.02">20mm Thick</option></select><label>Mix</label><select id="plasterMix"><option value="1:6">1:6</option><option value="1:4">1:4</option></select><p style="text-align:center;font-size:13px;color:#64748b">Cement + Finer Aggregate (Stone Dust) + Plastering Sand from Area x Thickness</p></div>
+<div class="card"><h3>9. POP</h3><label>Type</label><select id="popType"><option value="plain">POP Plain</option><option value="design">POP Design / Cornice</option><option value="pvc">PVC Ceiling</option></select><div class="grid"><div><label>POP Area (sqm)</label><input id="popArea" type="number" value="110"></div><div><label>Cornice Length (m)</label><input id="corniceLen" type="number" value="80"></div></div></div>
+<div class="card"><h3>10. TILLING + 11. SCREEDING</h3><label>Tile Type</label><select id="tileType"><option value="vitrified">Vitrified 60x60</option><option value="ceramic">Ceramic 40x40</option><option value="porcelain">Porcelain</option><option value="granite">Granite / Marble</option></select><div class="grid"><div><label>Floor Tile Area (sqm)</label><input id="tileFloor" type="number" value="100"></div><div><label>Wall Tile Area (sqm)</label><input id="tileWall" type="number" value="40"></div></div><div class="grid"><div><label>Tile Per Carton (sqm)</label><input id="tilePerCarton" type="number" value="1.44"></div><div><label>Skirting (m)</label><input id="skirting" type="number" value="80"></div></div><label>Screed Thickness</label><select id="screedT"><option value="0.025">25mm</option><option value="0.03">30mm</option><option value="0.04">40mm</option><option value="0.05">50mm</option></select><div class="grid"><div><label>Screed Area (sqm)</label><input id="screedArea" type="number" value="120"></div><div><label>Screed Mix</label><select id="screedMix"><option value="1:4">1:4</option><option value="1:6">1:6</option></select></div></div></div>
+<div class="card"><h3>13. PAINTING</h3><label>Paint Type</label><select id="paintType"><option value="emulsion">Emulsion</option><option value="texcote">Texcote</option><option value="satin">Satin / Silk</option><option value="oil">Oil Paint</option></select><div class="grid"><div><label>Paint Area (sqm) Blank=Auto</label><input id="paintArea" type="number" placeholder="Auto"></div><div><label>Coats</label><select id="coats"><option value="2">2 Coats</option><option value="3">3 Coats</option></select></div></div></div>
+<div class="card"><h3>14. WINDOWS + 15. DOORS</h3><label>Window Type</label><select id="winType"><option value="aluminium">Aluminium Sliding</option><option value="casement">Casement</option><option value="upvc">uPVC</option><option value="louvre">Louvre</option></select><label>Window Nos</label><input id="winNo" type="number" value="10"><div class="grid"><div><label>Main Door Nos</label><input id="mainDoor" type="number" value="1"></div><div><label>Internal Doors</label><input id="internalDoor" type="number" value="7"></div></div><div class="grid"><div><label>Main Door Type</label><select id="doorMainType"><option value="steel">Steel Security</option><option value="wood">Hardwood</option><option value="flush">Flush</option></select></div><div><label>Internal Door Type</label><select id="doorIntType"><option value="flush">Flush</option><option value="panel">Panel</option><option value="pvc">PVC - Toilet</option></select></div></div><div class="grid"><div><label>Frames</label><input id="frameNo" type="number" value="8"></div><div><label>Locks</label><input id="lockNo" type="number" value="8"></div></div></div>
+<div class="card"><h3>16. WARDROBE</h3><label>Type</label><select id="wardType"><option value="built">Built-In</option><option value="standalone">Stand-Alone</option><option value="walkin">Walk-In</option></select><div class="grid"><div><label>No of Wardrobes</label><input id="wardNo" type="number" value="3"></div><div><label>Length Per One (m)</label><input id="wardLen" type="number" value="2.4"></div></div><div class="grid"><div><label>Height (m)</label><input id="wardH" type="number" value="2.4"></div><div><label>Depth (m)</label><input id="wardD" type="number" value="0.6"></div></div></div>
+<div class="card"><h3>17. STAIRCASE RAILINGS + 18. BURGLARY</h3><label>Railing Type</label><select id="railType"><option value="steel">Mild Steel</option><option value="stainless">Stainless + Glass</option><option value="aluminium">Aluminium</option><option value="wood">Wooden + Steel</option><option value="glass">Full Glass</option></select><div class="grid"><div><label>Railing Length (m) Blank=Auto</label><input id="railLen" type="number" placeholder="Auto"></div><div><label>Balcony Length (m)</label><input id="balconyLen" type="number" value="10"></div></div><label>Burglary Type</label><select id="burgType"><option value="steel">Mild Steel</option><option value="aluminium">Aluminium</option><option value="wrought">Wrought Iron</option></select><div class="grid"><div><label>Burglary Windows</label><input id="burgWin" type="number" value="10"></div><div><label>Burglary Doors</label><input id="burgDoor" type="number" value="1"></div></div></div>
+<div class="card"><h3>19. FINISHING</h3><div class="grid"><div><label>Fence Length (m)</label><input id="fenceLen" type="number" value="80"></div><div><label>Interlocking (sqm)</label><input id="interlock" type="number" value="60"></div></div><div class="grid"><div><label>Gate Type</label><select id="gate"><option value="sliding">Sliding</option><option value="swing">Swing</option><option value="manual">Manual</option></select></div><div><label>Gate Size (m)</label><input id="gateSize" type="number" value="4"></div></div><div class="grid"><div><label>Drainage Length (m)</label><input id="drainLen" type="number" value="40"></div><div><label>Soakaway Nos</label><input id="soakNo" type="number" value="1"></div></div><label>Other Finishing</label><select id="otherFin"><option value="none">None</option><option value="parapet">Parapet + Coping</option><option value="cladding">Cladding</option><option value="both">Parapet + Cladding</option></select></div>
+<div class="card"><h3>💰 Rates (₦)</h3><div class="grid"><div><label>Cement / Bag</label><input id="cementP" type="number" value="10500"></div><div><label>Sand / Ton</label><input id="sandP" type="number" value="4500"></div><div><label>Gravel / Ton</label><input id="gravelP" type="number" value="12000"></div><div><label>Stone Dust / Ton</label><input id="dustP" type="number" value="6000"></div><div><label>Steel / Ton</label><input id="steelP" type="number" value="850000"></div><div><label>Block / Pc</label><input id="blockP" type="number" value="850"></div><div><label>Tile / Carton</label><input id="tileP" type="number" value="8500"></div><div><label>Paint / Bucket</label><input id="paintP" type="number" value="45000"></div><div><label>POP Bag</label><input id="popP" type="number" value="12000"></div><div><label>Labour %</label><input id="labourPct" type="number" value="30"></div></div></div>
+<button onclick="calculateAll()">CALCULATE</button>
+<div id="summary" class="summary"></div>
+<button id="boqBtn" class="btn2" onclick="generateBOQ()" style="display:none">STEP 2: 📋 GENERATE STANDARD BOQ</button>
+<button class="btn3" id="printBtn" onclick="window.print()" style="display:none">📄 DOWNLOAD BOQ PDF → Save To Files</button>
+<button class="btn3" id="excelBtn" onclick="downloadBOQ_Excel()" style="background:#0ea5e9;color:#fff;display:none">📊 DOWNLOAD BOQ EXCEL (CSV)</button>
+<button class="btn3" id="htmlBtn" onclick="downloadBOQ_HTML()" style="background:#a855f7;color:#fff;display:none">💾 DOWNLOAD BOQ FILE (HTML)</button>
+<button class="btn3" id="shareBtn" onclick="shareBOQ()" style="background:#25D366;color:#fff;display:none">📲 SHARE BOQ TO WHATSAPP</button>
 </div>
-
-<div class="card">
-<h3 style="margin:0">BOQ TABLE</h3>
-<small id="projShow"></small>
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Qty</th><th>Rate</th><th>Amount</th><th></th></tr></thead>
-<tbody id="list"></tbody>
-</table>
-<div class="total">TOTAL: <span id="total">₦0</span></div>
-<button class="btn-print" onclick="window.print()">🖨️ PRINT / SAVE AS PDF</button>
-</div>
-
+<div id="out" class="boq"></div>
 <script>
-let items=[];
-function fmt(n){return "₦"+Number(n).toLocaleString()}
-function addItem(){
-let d=document.getElementById('desc').value;
-let u=document.getElementById('unit').value;
-let q=parseFloat(document.getElementById('qty').value)||0;
-let r=parseFloat(document.getElementById('rate').value)||0;
-if(!d||!q||!r){alert("Fill Description, Qty and Rate");return}
-items.push({d,u,q,r,amt:q*r});
-render();
-document.getElementById('desc').value="";document.getElementById('qty').value="";document.getElementById('rate').value="";
-}
-function del(i){items.splice(i,1);render()}
-function render(){
-let h="";let t=0;
-items.forEach((it,i)=>{t+=it.amt;h+=`<tr><td>${i+1}</td><td>${it.d}<br><small>${it.u}</small></td><td>${it.q}</td><td>${fmt(it.r)}</td><td>${fmt(it.amt)}</td><td><button class="btn-del" onclick="del(${i})">X</button></td></tr>`});
-document.getElementById('list').innerHTML=h||"<tr><td colspan=6 style='text-align:center'>No item yet</td></tr>";
-document.getElementById('total').innerText=fmt(t);
-let p=document.getElementById('project').value;let c=document.getElementById('client').value;
-document.getElementById('projShow').innerText=p?`${p} - ${c}`:"";
-}
-document.getElementById('date').value=new Date().toISOString().slice(0,10);
-render();
-</script>
-</body>
-</html>
+let DATA=null,LAST_HTML="",LAST_CSV="",LAST_GRAND=0;
+function fmt(n){return '₦'+Math.ceil(n).toLocaleString()}
+function v(id){return +document.getElementById(id).value||0}
+function vv(id){return document.getElementById(id).value}
+function wt(dia){return dia==8?0.395:dia==10?0.617:dia==12?0.888:dia==16?1.58:dia==20?2.47:1.58}
+function calculateAll(){
+let L=v('length')||12,W=v('width')||10,floors=v('storey')||1,wallH=v('wallH')||3,doors=v('doors')||8,windows=v('windows')||10;
+let area=L*W,per=2*(L+W),internal=v('internalWall')||30;
+let excVol=v('excL')*v('excW')*v('excD');
+let foundConcVol=v('concL')*v('concW')*v('concT');
+let padExc=v('padNo')*v('padL')*v('padW')*v('padD');
+let padConc=v('padNo')*v('padL')*v('padW')*v('padCT');
+let raftExc=v
