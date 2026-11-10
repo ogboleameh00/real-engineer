@@ -221,6 +221,19 @@ function generateBOQ(){
  let html=`<div><h2 class="sec">HEAVENSGATE CONSTRUCTION - STANDARD BILL OF QUANTITIES</h2><p><b>Client:</b> ${client}<br><b>Location:</b> ${loc}<br><b>Project:</b> ${document.getElementById('title').value||''} - ${area} sqm<br><b>Roof:</b> ${cover} - Truss ${v('truss')}m / Stone ${v('stoneSpacing')}m</p><table><tr><th>#</th><th>Description</th><th>Qty</th><th>Unit</th><th>Rate</th><th>Amount</th></tr>${rows}<tr class="total"><td colspan="5">TOTAL MATERIALS</td><td class="right">${fmt(sub)}</td></tr><tr class="total"><td colspan="5">TOTAL LABOUR (${v('rateLab')}%)</td><td class="right">${fmt(lab)}</td></tr><tr class="total"><td colspan="5">CONTINGENCY (10%)</td><td class="right">${fmt(cont)}</td></tr><tr class="total"><td colspan="5">VAT (7.5%)</td><td class="right">${fmt(vat)}</td></tr><tr class="total"><td colspan="5">GRAND TOTAL</td><td class="right">${fmt(grand)}</td></tr></table></div>`;
  document.getElementById('out').innerHTML=html; document.getElementById('payBox').style.display='block'; window.scrollTo(0,document.body.scrollHeight);
 }
-function unlock(){ document.getElementById('payBox').style.display='none'; document.getElementById('downBox').style.display='block'; alert('Unlocked!'); }
+function unlock(){
+let code = prompt('Enter Unlock Code:\n\nAfter you pay ₦5,000 to Opay 7035780518 (Ameh Anebi Ogbole), send receipt to WhatsApp +2347035780518 to get code.');
+if(code === 'AMEH-2026'){
+localStorage.setItem('hg_paid','YES');
+alert('Welcome Boss! Unlocked forever.');
+location.reload();
+} else if(code === 'Nicole-2026'){
+localStorage.setItem('hg_paid','YES');
+alert('Payment confirmed! Download unlocked.');
+location.reload();
+} else {
+alert('Wrong code. Pay ₦5,000 to Opay 7035780518, then send receipt to WhatsApp +2347035780518 to get code.');
+}
+}  
 function shareWA(){ let t=`🏗️ HEAVENSGATE BOQ for ${document.getElementById('client').value||'Client'} - Grand Total: ${fmt(LAST_GRAND)}`; window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank'); }</script>
 <div style="text-align:center; padding:15px; font-size:12px; color:#fff;">Created by Engr. Ameh Ogbole</div></body></html>
